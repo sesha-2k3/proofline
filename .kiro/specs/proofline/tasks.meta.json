@@ -1,0 +1,29 @@
+{
+  "pbtResults": {},
+  "executionHistory": {
+    "3. [BE] B3 — rules loader and accessors + tests": [
+      {
+        "executionId": "a63b64d4-4c2d-4dd9-be9d-0786d179f178",
+        "chatSessionId": "sess_3816f06f-51aa-4d5a-a933-6aecac28f301",
+        "timestamp": 1792876646688
+      },
+      {
+        "executionId": "a63b64d4-4c2d-4dd9-be9d-0786d179f178",
+        "chatSessionId": "sess_3816f06f-51aa-4d5a-a933-6aecac28f301",
+        "timestamp": 1792876755995
+      }
+    ],
+    "4. [BE] B4 — Jorge mocks, mock-backed API, contract tests, `make openapi` (push; frontend starts)": [
+      {
+        "executionId": "decee2ee-8657-4f30-babd-ec5c186ef074",
+        "chatSessionId": "sess_d679219d-936a-4f26-8f75-e8777cb28138",
+        "timestamp": 1792876893181
+      },
+      {
+        "executionId": "decee2ee-8657-4f30-babd-ec5c186ef074",
+        "chatSessionId": "sess_d679219d-936a-4f26-8f75-e8777cb28138",
+        "timestamp": 1792877152113
+      }
+    ]
+  }
+}
