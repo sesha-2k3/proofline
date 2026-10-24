@@ -42,4 +42,4 @@ docs/                      KIRO_LOG.md, DECISIONS.md, FRONTEND_REQUESTS.md
 Makefile
 BUILD_PLAN.md
 ```
-Ownership: backend owner: backend/, rules/, shared/. Frontend owner: frontend/. Only the backend owner changes backend/app/schemas (then runs `make openapi`).
+Ownership: one developer owns backend/ and frontend/ and works directly on `main`. After changing backend/app/schemas, run `make openapi` and regenerate frontend/src/api/schema.d.ts.

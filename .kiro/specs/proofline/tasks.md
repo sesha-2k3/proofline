@@ -2,7 +2,7 @@
 
 ## Overview
 
-Follow BUILD_PLAN.md. One task per Kiro session. Each task maps to the BUILD_PLAN steps named in it. Backend tasks (B*) run on the `backend` branch, frontend tasks (F*) on `frontend`; merge into `main` after each step.
+Follow BUILD_PLAN.md. One task per Kiro session. Each task maps to the BUILD_PLAN steps named in it. All tasks (B* and F*) run directly on `main`; one developer owns both backend and frontend.
 
 ## Tasks
 
