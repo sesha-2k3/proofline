@@ -1,0 +1,15 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Contract sync",
+      "trigger": "PostToolUse",
+      "description": "After Kiro edits a file under backend/app/schemas/, regenerate OpenAPI and note the change for the frontend.",
+      "matcher": "^(fs_write|str_replace|fs_append)$",
+      "action": {
+        "type": "agent",
+        "prompt": "Contract sync hook. Apply ONLY if the file you just edited is under backend/app/schemas/. Otherwise ignore this hook.\n\n1. Run: make openapi. Report errors and fix them.\n2. Add one line under the \"Changes\" heading in docs/FRONTEND_REQUESTS.md (create the file or heading if missing) describing the schema change: date, model and field names (camelCase as on the wire), and whether it is additive or breaking."
+      }
+    }
+  ]
+}

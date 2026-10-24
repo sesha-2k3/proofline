@@ -1,0 +1,60 @@
+from fastapi import APIRouter, FastAPI, HTTPException, Request
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse, JSONResponse
+from fastapi.staticfiles import StaticFiles
+
+from app.errors import ApiError
+from app.settings import get_settings
+
+# Routers are added here as later steps implement them (all under /api).
+ROUTERS: list[APIRouter] = []
+
+
+def create_app() -> FastAPI:
+    settings = get_settings()
+    app = FastAPI(title="Proofline API", version="1.0.0")
+
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=["http://localhost:5173"],
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
+
+    @app.exception_handler(ApiError)
+    async def api_error_handler(_: Request, exc: ApiError) -> JSONResponse:
+        return JSONResponse(
+            status_code=exc.status,
+            content={
+                "error": {
+                    "code": exc.code,
+                    "message": exc.message,
+                    "details": exc.details,
+                }
+            },
+        )
+
+    for router in ROUTERS:
+        app.include_router(router, prefix="/api")
+
+    settings.samples_dir.mkdir(parents=True, exist_ok=True)
+    app.mount("/samples", StaticFiles(directory=settings.samples_dir), name="samples")
+
+    dist = settings.frontend_dist
+    if dist.is_dir():
+        dist_root = dist.resolve()
+        index_file = dist_root / "index.html"
+
+        @app.get("/{full_path:path}", include_in_schema=False)
+        async def spa(full_path: str) -> FileResponse:
+            if full_path.startswith(("api/", "samples/")) or full_path in ("api", "samples"):
+                raise HTTPException(status_code=404)
+            candidate = (dist_root / full_path).resolve()
+            if full_path and candidate.is_file() and candidate.is_relative_to(dist_root):
+                return FileResponse(candidate)
+            return FileResponse(index_file)
+
+    return app
+
+
+app = create_app()

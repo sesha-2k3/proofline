@@ -1,0 +1,15 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Ledger property tests",
+      "trigger": "PostToolUse",
+      "description": "After Kiro edits a file under backend/app/ledger/, run the ledger property, scenario, and boundary tests.",
+      "matcher": "^(fs_write|str_replace|fs_append)$",
+      "action": {
+        "type": "agent",
+        "prompt": "Ledger property tests hook. Apply ONLY if the file you just edited is under backend/app/ledger/. Otherwise ignore this hook.\n\nRun: cd backend && uv run pytest -q tests/test_ledger_properties.py tests/test_ledger_scenario.py tests/test_ledger_boundary.py\n\nIf a hypothesis test fails:\n1. Show the falsifying example (counterexample) hypothesis printed.\n2. Fix the bug in backend/app/ledger/ (not the test, unless the test is wrong; say which).\n3. Add a named regression test (e.g. test_regression_<short_description>) that reproduces the counterexample as a fixed example.\n4. Re-run the tests until they pass.\n5. Add an entry to docs/KIRO_LOG.md under the \"Property-based testing\" heading (create the heading if missing): the counterexample, root cause, fix, and regression test name.\nReport the result in a few lines."
+      }
+    }
+  ]
+}
