@@ -1,0 +1,15 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Rules integrity",
+      "trigger": "PostToolUse",
+      "description": "After Kiro edits rules/masshealth.yaml, check rule source/status, run make test, and list ledger outcomes that could change.",
+      "matcher": "^(fs_write|str_replace|fs_append)$",
+      "action": {
+        "type": "agent",
+        "prompt": "Rules integrity hook. Apply ONLY if the file you just edited is rules/masshealth.yaml. Otherwise ignore this hook.\n\n1. Check every rule in rules/masshealth.yaml has a source and a status (confirmed | provisional | unresolved). A null source is allowed only when status is unresolved. List any violations and fix them or ask me if the correct source is unknown.\n2. Run: make test. Report failures.\n3. List the ledger outcomes that could change because of this edit (which rules changed, which month evaluations, exemptions, or \"conditional\" results depend on them, and which tests or the Jorge scenario would be affected)."
+      }
+    }
+  ]
+}

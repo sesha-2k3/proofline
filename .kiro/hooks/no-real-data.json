@@ -1,0 +1,15 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "No real data",
+      "trigger": "PostToolUse",
+      "description": "After Kiro edits fixtures, samples, tests, or mocks, scan for real-looking personal data or brands and replace them.",
+      "matcher": "^(fs_write|str_replace|fs_append)$",
+      "action": {
+        "type": "agent",
+        "prompt": "No real data hook. Apply ONLY if the file you just edited is under backend/synthetic/, backend/samples/, backend/tests/, or backend/app/mocks/. Otherwise ignore this hook.\n\nScan the edited file for:\n- Real-looking SSNs matching ###-##-#### (allowed only if clearly synthetic, e.g. starting with 000 or 9xx).\n- Real-looking street addresses.\n- Real brand or employer names (e.g. real gig apps, restaurants, banks). Allowed synthetic names: QuickDash, Harbor Cafe, Ramos Family Bakery, Eastside Community Food Pantry.\nReplace any match with a synthetic value and keep tests and ground truth consistent. Then warn me with a list of what you found and what you replaced it with."
+      }
+    }
+  ]
+}

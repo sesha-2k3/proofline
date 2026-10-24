@@ -1,0 +1,15 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Pipeline regression",
+      "trigger": "PostToolUse",
+      "description": "After Kiro edits a file under backend/app/pipeline/, run the pipeline tests.",
+      "matcher": "^(fs_write|str_replace|fs_append)$",
+      "action": {
+        "type": "agent",
+        "prompt": "Pipeline regression hook. Apply ONLY if the file you just edited is under backend/app/pipeline/. Otherwise ignore this hook.\n\nRun: cd backend && uv run pytest -q tests/test_pipeline*.py\nReport any failures with the test name and a one-line cause."
+      }
+    }
+  ]
+}

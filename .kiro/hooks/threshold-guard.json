@@ -1,0 +1,15 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Threshold guard",
+      "trigger": "PostToolUse",
+      "description": "After Kiro edits backend/app/ (outside backend/app/rules/), check for hardcoded eligibility thresholds.",
+      "matcher": "^(fs_write|str_replace|fs_append)$",
+      "action": {
+        "type": "agent",
+        "prompt": "Threshold guard hook. Apply ONLY if the file you just edited is under backend/app/ and NOT under backend/app/rules/. Otherwise ignore this hook.\n\nCheck the edited file for hardcoded eligibility thresholds: 80, 580, 58000, 60, 30 (and equivalents like 8000 hundredths or 0.8). Ignore uses that are not eligibility values (e.g. HTTP timeouts, image DPI, loop sizes), but say which ones you ignored and why.\nReplace each eligibility use with the matching accessor from backend/app/rules/accessors.py (add an accessor there if one is missing). Run the relevant tests afterward and report what you changed."
+      }
+    }
+  ]
+}

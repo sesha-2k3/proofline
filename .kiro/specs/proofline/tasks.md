@@ -2,7 +2,7 @@
 
 Follow BUILD_PLAN.md. One task per Kiro session.
 
-- [ ] 1. [BE] B1 — backend skeleton, settings, Makefile
+- [x] 1. [BE] B1 — backend skeleton, settings, Makefile
 - [ ] 2. [BE] B2 — Pydantic schemas (API contract) + OpenAPI export
 - [ ] 3. [BE] B3 — rules loader and accessors + tests
 - [ ] 4. [BE] B4 — Jorge mocks, mock-backed API, contract tests, `make openapi` (push; frontend starts)
