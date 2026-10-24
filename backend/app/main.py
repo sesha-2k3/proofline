@@ -7,6 +7,7 @@ from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 
 from app.api import (
+    deadline,
     documents,
     evaluate,
     health,
@@ -30,6 +31,7 @@ ROUTERS: list[APIRouter] = [
     evaluate.router,
     packet.router,
     timeline.router,
+    deadline.router,
 ]
 
 

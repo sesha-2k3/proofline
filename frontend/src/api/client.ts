@@ -11,6 +11,8 @@ export type DocumentResult = Schemas['DocumentResult']
 export type EvidenceRecord = Schemas['EvidenceRecord']
 export type ExemptionAnswer = Schemas['ExemptionAnswer']
 export type EvaluateResponse = Schemas['EvaluateResponse']
+export type MonthResult = Schemas['MonthResult']
+export type MonthStatus = Schemas['MonthResult']['status']
 export type HealthResponse = Schemas['HealthResponse']
 export type RulesResponse = Schemas['RulesResponse']
 export type SamplesResponse = Schemas['SamplesResponse']
@@ -19,6 +21,11 @@ export type ValidateRequest = Schemas['ValidateRequest']
 export type EvaluateRequest = Schemas['EvaluateRequest']
 export type PacketRequest = Schemas['PacketRequest']
 export type TimelineRequest = Schemas['TimelineRequest']
+export type Deadline = Schemas['Deadline']
+export type DeadlineRequest = Schemas['DeadlineRequest']
+export type DeadlineResponse = Schemas['DeadlineResponse']
+export type PageView = Schemas['PageView']
+export type TextLine = Schemas['TextLine']
 
 export class ApiError extends Error {
   code: string
@@ -100,6 +107,11 @@ export async function validateRecords(body: ValidateRequest): Promise<EvidenceRe
 
 export async function evaluate(body: EvaluateRequest): Promise<EvaluateResponse> {
   return unwrap(await api.POST('/api/evaluate', { body }))
+}
+
+// Response deadline computed by the backend; null when no RFI received date is set.
+export async function getDeadline(caseInfo: CaseInfo): Promise<Deadline | null> {
+  return unwrap(await api.POST('/api/deadline', { body: { caseInfo } })).deadline ?? null
 }
 
 // Downloads the evidence packet PDF and returns the blob.

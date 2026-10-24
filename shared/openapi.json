@@ -264,6 +264,47 @@
           }
         }
       }
+    },
+    "/api/deadline": {
+      "post": {
+        "tags": [
+          "deadline"
+        ],
+        "summary": "Deadline",
+        "operationId": "deadline_api_deadline_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeadlineRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeadlineResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -540,6 +581,41 @@
         ],
         "title": "Deadline"
       },
+      "DeadlineRequest": {
+        "properties": {
+          "caseInfo": {
+            "$ref": "#/components/schemas/CaseInfo"
+          }
+        },
+        "type": "object",
+        "required": [
+          "caseInfo"
+        ],
+        "title": "DeadlineRequest"
+      },
+      "DeadlineResponse": {
+        "properties": {
+          "deadline": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Deadline"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "rulesVersion": {
+            "type": "string",
+            "title": "Rulesversion"
+          }
+        },
+        "type": "object",
+        "required": [
+          "rulesVersion"
+        ],
+        "title": "DeadlineResponse"
+      },
       "DocumentResult": {
         "properties": {
           "docId": {
@@ -618,6 +694,13 @@
           "rulesVersion": {
             "type": "string",
             "title": "Rulesversion"
+          },
+          "pages": {
+            "items": {
+              "$ref": "#/components/schemas/PageView"
+            },
+            "type": "array",
+            "title": "Pages"
           }
         },
         "type": "object",
@@ -1058,6 +1141,42 @@
         ],
         "title": "HealthResponse"
       },
+      "LineBox": {
+        "properties": {
+          "x0": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "X0"
+          },
+          "y0": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Y0"
+          },
+          "x1": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "X1"
+          },
+          "y1": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Y1"
+          }
+        },
+        "type": "object",
+        "required": [
+          "x0",
+          "y0",
+          "x1",
+          "y1"
+        ],
+        "title": "LineBox"
+      },
       "MonthResult": {
         "properties": {
           "month": {
@@ -1332,6 +1451,38 @@
           "evaluation"
         ],
         "title": "PacketRequest"
+      },
+      "PageView": {
+        "properties": {
+          "page": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Page"
+          },
+          "imageDataUrl": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Imagedataurl"
+          },
+          "lines": {
+            "items": {
+              "$ref": "#/components/schemas/TextLine"
+            },
+            "type": "array",
+            "title": "Lines"
+          }
+        },
+        "type": "object",
+        "required": [
+          "page"
+        ],
+        "title": "PageView"
       },
       "PipelineStage": {
         "properties": {
@@ -1630,6 +1781,23 @@
           "documentsIncluded"
         ],
         "title": "SubmissionEntry"
+      },
+      "TextLine": {
+        "properties": {
+          "text": {
+            "type": "string",
+            "title": "Text"
+          },
+          "box": {
+            "$ref": "#/components/schemas/LineBox"
+          }
+        },
+        "type": "object",
+        "required": [
+          "text",
+          "box"
+        ],
+        "title": "TextLine"
       },
       "Thresholds": {
         "properties": {

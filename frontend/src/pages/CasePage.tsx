@@ -1,12 +1,17 @@
 import { useEffect, useRef, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { getRules, getSamples, type SamplesResponse } from '../api/client'
+import { CaseHeader } from '../components/CaseHeader'
+import { DeadlineChip } from '../components/DeadlineChip'
 import { CaseSetupForm } from '../components/CaseSetupForm'
 import { PossibleExemptionNotice } from '../components/ExemptionQuestions'
 import { GapList } from '../components/GapList'
 import { MonthCards } from '../components/MonthCards'
+import { MonthStrip } from '../components/MonthStrip'
 import { PacketPanel } from '../components/PacketPanel'
 import { ReviewPanel } from '../components/ReviewPanel'
+import { Skeleton } from '../components/Skeleton'
+import { StoryHeadline } from '../components/StoryHeadline'
 import { Uploader } from '../components/Uploader'
 import { formatDate } from '../i18n/format'
 import { fill, useT } from '../i18n/useT'
@@ -63,12 +68,13 @@ export function CasePage() {
 
   return (
     <section className="space-y-6">
-      <h1 ref={headingRef} tabIndex={-1} className="text-2xl font-bold text-ink">{isSample ? t('sampleCaseTitle') : t('caseTitle')}</h1>
+      <CaseHeader isSample={isSample} headingRef={headingRef} deadlineSlot={<DeadlineChip isSample={isSample} />} />
 
       {isSample && !samples && !sampleError && (
-        <p role="status" className="text-muted">
-          {t('sampleLoading')}
-        </p>
+        <div className="space-y-2">
+          <p className="text-muted">{t('sampleLoading')}</p>
+          <Skeleton lines={3} />
+        </div>
       )}
       {sampleError && (
         <div role="alert" className="flex items-start gap-3 rounded-md border border-short bg-short-soft p-3">
@@ -96,14 +102,24 @@ function ResultsStep({ onBack, onContinue }: { onBack: () => void; onContinue: (
   const { state } = useCaseState()
   const evaluation = state.evaluation
   const lang = state.caseInfo.lang
+  // Evaluation start and failure are announced in ReviewPanel (step 3). The
+  // finish is announced here after mount, so screen readers hear the change.
+  const [announce, setAnnounce] = useState('')
+  useEffect(() => {
+    const id = window.setTimeout(() => setAnnounce(evaluation ? t('evaluationDone') : ''), 100)
+    return () => window.clearTimeout(id)
+  }, [evaluation, t])
 
   return (
     <section className="space-y-6">
       <h2 className="text-xl font-semibold text-ink">{t('resultsTitle')}</h2>
+      <p aria-live="polite" className="sr-only">
+        {announce}
+      </p>
 
       {evaluation && (
         <>
-          <div className="space-y-2 rounded-lg border border-line bg-surface p-4">
+          <div className="space-y-2 rounded-[var(--radius-card)] border border-line bg-surface shadow-[var(--shadow-card)] p-4">
             <h3 className="text-lg font-semibold">{t('summaryTitle')}</h3>
             <p aria-live="polite">{evaluation.summary}</p>
             {evaluation.deadline && (
@@ -118,6 +134,8 @@ function ResultsStep({ onBack, onContinue }: { onBack: () => void; onContinue: (
             )}
           </div>
 
+          <StoryHeadline evaluation={evaluation} records={state.records} />
+          <MonthStrip evaluation={evaluation} />
           <MonthCards evaluation={evaluation} />
           <GapList gaps={evaluation.gaps} />
 

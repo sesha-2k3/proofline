@@ -140,6 +140,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/deadline": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Deadline */
+        post: operations["deadline_api_deadline_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -242,6 +259,16 @@ export interface components {
              */
             ruleStatus: "confirmed" | "provisional" | "unresolved";
         };
+        /** DeadlineRequest */
+        DeadlineRequest: {
+            caseInfo: components["schemas"]["CaseInfo"];
+        };
+        /** DeadlineResponse */
+        DeadlineResponse: {
+            deadline?: components["schemas"]["Deadline"] | null;
+            /** Rulesversion */
+            rulesVersion: string;
+        };
         /** DocumentResult */
         DocumentResult: {
             /** Docid */
@@ -274,6 +301,8 @@ export interface components {
             demoMode: boolean;
             /** Rulesversion */
             rulesVersion: string;
+            /** Pages */
+            pages?: components["schemas"]["PageView"][];
         };
         /** EvaluateRequest */
         EvaluateRequest: {
@@ -390,6 +419,17 @@ export interface components {
             /** Rulesversion */
             rulesVersion: string;
         };
+        /** LineBox */
+        LineBox: {
+            /** X0 */
+            x0: number;
+            /** Y0 */
+            y0: number;
+            /** X1 */
+            x1: number;
+            /** Y1 */
+            y1: number;
+        };
         /** MonthResult */
         MonthResult: {
             /** Month */
@@ -486,6 +526,15 @@ export interface components {
             /** Records */
             records: components["schemas"]["EvidenceRecord"][];
             evaluation: components["schemas"]["EvaluateResponse"];
+        };
+        /** PageView */
+        PageView: {
+            /** Page */
+            page: number;
+            /** Imagedataurl */
+            imageDataUrl?: string | null;
+            /** Lines */
+            lines?: components["schemas"]["TextLine"][];
         };
         /** PipelineStage */
         PipelineStage: {
@@ -593,6 +642,12 @@ export interface components {
             documentsIncluded: string[];
             /** Notes */
             notes?: string | null;
+        };
+        /** TextLine */
+        TextLine: {
+            /** Text */
+            text: string;
+            box: components["schemas"]["LineBox"];
         };
         /** Thresholds */
         Thresholds: {
@@ -863,6 +918,39 @@ export interface operations {
                 };
                 content: {
                     "application/pdf": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    deadline_api_deadline_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["DeadlineRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DeadlineResponse"];
                 };
             };
             /** @description Validation Error */

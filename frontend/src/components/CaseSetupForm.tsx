@@ -1,22 +1,12 @@
-import { useState, type FormEvent } from 'react'
-import type { CaseInfo, RulesResponse } from '../api/client'
+import { useEffect, useRef, useState, type FormEvent } from 'react'
+import { getDeadline, type CaseInfo } from '../api/client'
 import type { MessageKey } from '../i18n/en'
 import { useT } from '../i18n/useT'
 import { useCaseState } from '../state/caseState'
-
-type RuleStatus = RulesResponse['ruleStatuses'][string]
+import { Skeleton } from './Skeleton'
 
 const inputClass =
   'mt-1 block w-full max-w-sm rounded-md border border-line bg-surface px-3 py-2 text-ink focus:border-brand'
-
-// Preview of the response deadline: received date + rfi_response_days from GET /api/rules.
-// The deadline in the results (POST /api/evaluate) is computed by the backend the same way.
-function addDays(isoDate: string, days: number): string | null {
-  const date = new Date(`${isoDate}T00:00:00Z`)
-  if (Number.isNaN(date.getTime())) return null
-  date.setUTCDate(date.getUTCDate() + days)
-  return date.toISOString().slice(0, 10)
-}
 
 function formatDate(isoDate: string, lang: CaseInfo['lang']): string {
   return new Date(`${isoDate}T00:00:00Z`).toLocaleDateString(lang === 'es' ? 'es-US' : 'en-US', {
@@ -43,6 +33,16 @@ export function CaseSetupForm({ onContinue }: { onContinue: () => void }) {
   const info = state.caseInfo
   const [errors, setErrors] = useState<MessageKey[]>([])
 
+  // The deadline preview comes from POST /api/deadline. A request counter applies
+  // only the newest response; on failure the previous deadline stays as it was.
+  const requestSeq = useRef(0)
+  useEffect(() => {
+    const seq = ++requestSeq.current
+    getDeadline({ ...info, clientName: info.clientName.trim(), rfiReceivedDate: info.rfiReceivedDate || null })
+      .then((deadline) => seq === requestSeq.current && dispatch({ type: 'SET_DEADLINE', deadline }))
+      .catch(() => undefined)
+  }, [info, dispatch])
+
   const update = (changes: Partial<CaseInfo>) => dispatch({ type: 'SET_CASE_INFO', caseInfo: { ...info, ...changes } })
 
   const onSubmit = (event: FormEvent) => {
@@ -66,10 +66,7 @@ export function CaseSetupForm({ onContinue }: { onContinue: () => void }) {
     onContinue()
   }
 
-  const rules = state.rules
-  const deadline =
-    info.rfiReceivedDate && rules ? addDays(info.rfiReceivedDate, rules.thresholds.rfiResponseDays) : null
-  const deadlineStatus: RuleStatus | undefined = rules?.ruleStatuses['rfi_response_days']
+  const deadline = state.deadline
 
   return (
     <form onSubmit={onSubmit} noValidate className="space-y-5">
@@ -171,13 +168,14 @@ export function CaseSetupForm({ onContinue }: { onContinue: () => void }) {
         />
       </label>
 
+      {!deadline && !state.rules && <Skeleton lines={2} className="max-w-sm" />}
       {deadline && (
         <div className="rounded-md border border-line bg-surface p-3" aria-live="polite">
           <p className="font-medium">
-            {t('responseDeadline')}: {formatDate(deadline, info.lang)}
-            {deadlineStatus && deadlineStatus !== 'confirmed' && (
+            {t('responseDeadline')}: {formatDate(deadline.date, info.lang)}
+            {deadline.ruleStatus !== 'confirmed' && (
               <span className="ml-2 rounded-full border border-conditional bg-conditional-soft px-2 py-0.5 text-sm text-conditional">
-                {t(`ruleStatus_${deadlineStatus}`)}
+                {t(`ruleStatus_${deadline.ruleStatus}`)}
               </span>
             )}
           </p>

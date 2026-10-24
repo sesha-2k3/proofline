@@ -11,3 +11,4 @@ Add one line whenever a Kiro feature shaped or caught something.
 ## Property-based testing
 ## Evaluation
 ## Powers
+- demo-story-ui 10.1 (API-level walkthrough, no browser): `make test` 127 passed; frontend tsc, lint (1 react/only-export-components warning in caseState.tsx), vitest 21 passed, build OK. Live backend: 7 samples each returned 6 ok pipeline stages and 1 page; deadline 2027-07-12 (provisional); May 2027 conditional (68.93 h, self_employment_income_basis + pay_period_split_method) → meets 92.93 h after confirming pantry May hours; packet and timeline returned PDFs; `docker build` OK. No fixes needed. Visual EN/ES, 375 px, keyboard, and reduced-motion checks left to the user.

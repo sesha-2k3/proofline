@@ -2,6 +2,7 @@ import { useState, type FormEvent } from 'react'
 import { downloadPacket, downloadTimeline, type SubmissionEntry } from '../api/client'
 import { formatDate } from '../i18n/format'
 import { fill, useT } from '../i18n/useT'
+import { firstName } from '../lib/story'
 import { useCaseState } from '../state/caseState'
 
 type Channel = SubmissionEntry['channel']
@@ -26,6 +27,7 @@ export function PacketPanel({ onBack }: { onBack: () => void }) {
   const { state, dispatch } = useCaseState()
   const { caseInfo, evaluation, records, submissions } = state
   const lang = caseInfo.lang
+  const name = firstName(caseInfo.clientName)
   const documentNames = state.documents.filter((d) => d.status === 'done').map((d) => d.file.name)
 
   const [busy, setBusy] = useState<'packet' | 'record' | null>(null)
@@ -46,7 +48,7 @@ export function PacketPanel({ onBack }: { onBack: () => void }) {
     setStatus(t('packetPreparing'))
     try {
       await downloadPacket({ caseInfo, records, evaluation })
-      setStatus(t('packetReady'))
+      setStatus(t('packetDownloaded'))
     } catch {
       setStatus('')
       setError(t('packetError'))
@@ -112,17 +114,34 @@ export function PacketPanel({ onBack }: { onBack: () => void }) {
         </div>
       )}
 
-      <div className="space-y-3 rounded-lg border border-line bg-surface p-4">
-        <h3 className="text-lg font-semibold">{t('packetHeading')}</h3>
+      <div
+        className={
+          evaluation
+            ? 'space-y-4 rounded-[var(--radius-card)] border-2 border-brand bg-brand-soft shadow-[var(--shadow-card)] p-5'
+            : 'space-y-3 rounded-[var(--radius-card)] border border-line bg-surface shadow-[var(--shadow-card)] p-4'
+        }
+      >
+        {evaluation ? (
+          <h3 className="text-2xl font-bold text-ink">{fill(t('packetReady'), { name })}</h3>
+        ) : (
+          <h3 className="text-lg font-semibold">{t('packetHeading')}</h3>
+        )}
         <p className="text-muted">{t('packetIntro')}</p>
-        <p className="rounded-md bg-canvas p-3 text-sm">{t('packetDisclaimer')}</p>
+        <p className="rounded-md bg-surface p-3 text-sm">{t('packetDisclaimer')}</p>
+        <p className="font-medium text-ink">{t('closeLine')}</p>
+        <p className="text-ink">{fill(t('youSend'), { name })}</p>
         {!evaluation && <p className="text-conditional">{t('packetNeedsEvaluation')}</p>}
-        <button type="button" disabled={!evaluation || busy !== null} onClick={() => void getPacket()} className={primaryButton}>
+        <button
+          type="button"
+          disabled={!evaluation || busy !== null}
+          onClick={() => void getPacket()}
+          className={`${primaryButton} w-full text-lg sm:w-auto`}
+        >
           {busy === 'packet' ? t('packetPreparing') : t('downloadPacket')}
         </button>
       </div>
 
-      <form onSubmit={addSubmission} noValidate className="space-y-4 rounded-lg border border-line bg-surface p-4">
+      <form onSubmit={addSubmission} noValidate className="space-y-4 rounded-[var(--radius-card)] border border-line bg-surface shadow-[var(--shadow-card)] p-4">
         <h3 className="text-lg font-semibold">{t('submissionLogTitle')}</h3>
         <p className="text-muted">{t('submissionLogIntro')}</p>
 
@@ -207,7 +226,7 @@ export function PacketPanel({ onBack }: { onBack: () => void }) {
         </button>
       </form>
 
-      <div className="space-y-3 rounded-lg border border-line bg-surface p-4">
+      <div className="space-y-3 rounded-[var(--radius-card)] border border-line bg-surface shadow-[var(--shadow-card)] p-4">
         <h3 className="text-lg font-semibold">{t('submissionsTitle')}</h3>
         {submissions.length === 0 ? (
           <p className="text-muted">{t('noSubmissions')}</p>

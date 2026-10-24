@@ -1,14 +1,17 @@
 import type { DocumentResult } from '../api/client'
 import type { MessageKey } from '../i18n/en'
 import { fill, useT } from '../i18n/useT'
+import { stageChips } from '../lib/stages'
+import type { CaseDocument } from '../state/caseState'
+import { StatusIcon } from './StatusIcon'
 
 type Stage = DocumentResult['pipeline'][number]
 
-const STATUS_STYLE: Record<Stage['status'], { icon: string; className: string }> = {
-  ok: { icon: '✓', className: 'text-meets' },
-  warning: { icon: '!', className: 'text-conditional' },
-  failed: { icon: '✕', className: 'text-short' },
-  skipped: { icon: '–', className: 'text-muted' },
+const STATUS_STYLE: Record<Stage['status'], { className: string }> = {
+  ok: { className: 'text-meets' },
+  warning: { className: 'text-conditional' },
+  failed: { className: 'text-short' },
+  skipped: { className: 'text-muted' },
 }
 
 // Known backend warnings get a translated message; anything else is shown as sent.
@@ -17,12 +20,16 @@ const KNOWN_WARNINGS: Record<string, MessageKey> = {
   'Enter the values manually.': 'warningManualEntry',
 }
 
-export function PipelineTrace({ result }: { result: DocumentResult }) {
+// Detail view under the StageStrip: durations, detail, extractor, warnings.
+// Opens by default when stageChips() says a stage or the result has a problem.
+export function PipelineTrace({ document }: { document: CaseDocument }) {
   const t = useT()
-  const hasProblem = result.warnings.length > 0 || result.pipeline.some((s) => s.status === 'failed')
+  const result = document.result
+  if (!result) return null
+  const { openDetails } = stageChips(document)
 
   return (
-    <details className="mt-3 rounded-md border border-line bg-canvas" open={hasProblem}>
+    <details className="mt-3 rounded-[var(--radius-card)] border border-line bg-canvas" open={openDetails}>
       <summary className="cursor-pointer px-3 py-2 font-medium">{t('traceTitle')}</summary>
       <div className="px-3 pb-3">
         <ol className="space-y-1">
@@ -30,9 +37,7 @@ export function PipelineTrace({ result }: { result: DocumentResult }) {
             const style = STATUS_STYLE[stage.status]
             return (
               <li key={stage.stage} className="flex flex-wrap items-baseline gap-x-2 text-sm">
-                <span aria-hidden="true" className={`w-4 font-bold ${style.className}`}>
-                  {style.icon}
-                </span>
+                <StatusIcon kind={stage.status} className={`h-4 w-4 self-center ${style.className}`} />
                 <span className="font-medium">{t(`stage_${stage.stage}`)}</span>
                 <span className={style.className}>{t(`stageStatus_${stage.status}`)}</span>
                 <span className="text-muted">{fill(t('durationMs'), { ms: stage.durationMs })}</span>

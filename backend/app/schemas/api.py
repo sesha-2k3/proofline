@@ -54,6 +54,24 @@ class SamplesResponse(ApiModel):
     rules_version: str
 
 
+class LineBox(ApiModel):
+    x0: float = Field(ge=0, le=1)  # left, fraction of page width
+    y0: float = Field(ge=0, le=1)  # top, fraction of page height (top-left origin)
+    x1: float = Field(ge=0, le=1)
+    y1: float = Field(ge=0, le=1)
+
+
+class TextLine(ApiModel):
+    text: str
+    box: LineBox
+
+
+class PageView(ApiModel):
+    page: int = Field(ge=1)
+    image_data_url: str | None = None  # "data:image/png;base64,..."
+    lines: list[TextLine] = Field(default_factory=list)
+
+
 class DocumentResult(ApiModel):
     doc_id: str
     file_name: str
@@ -66,6 +84,7 @@ class DocumentResult(ApiModel):
     warnings: list[str]
     demo_mode: bool
     rules_version: str
+    pages: list[PageView] = Field(default_factory=list)
 
 
 class ValidateRequest(ApiModel):
@@ -97,6 +116,15 @@ class EvaluateResponse(ApiModel):
     gaps: list[GapItem]
     summary: str
     demo_mode: bool
+    rules_version: str
+
+
+class DeadlineRequest(ApiModel):
+    case_info: CaseInfo
+
+
+class DeadlineResponse(ApiModel):
+    deadline: Deadline | None = None
     rules_version: str
 
 

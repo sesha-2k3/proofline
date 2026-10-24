@@ -19,6 +19,13 @@
   --color-short: #a3261b;
   --color-short-soft: #fbe7e5;
   --color-focus: #f0b429;
+  --color-skeleton: #e4e7eb;
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --radius-card: 0.75rem;
+  --shadow-card: 0 1px 2px 0 rgb(31 41 51 / 0.06), 0 1px 3px 0 rgb(31 41 51 / 0.1);
+}
+@utility tabular {
+  font-variant-numeric: tabular-nums;
 }
 
 html,
@@ -30,10 +37,20 @@ body,
 body {
   background-color: var(--color-canvas);
   color: var(--color-ink);
-  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-family: var(--font-sans);
 }
 
 :focus-visible {
   outline: 3px solid var(--color-focus);
   outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

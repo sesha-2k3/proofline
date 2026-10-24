@@ -16,6 +16,7 @@ from app.mocks.jorge import (
     PANTRY_MAY,
 )
 from app.schemas.api import (
+    DeadlineResponse,
     DocumentResult,
     EvaluateResponse,
     HealthResponse,
@@ -152,6 +153,20 @@ def test_evaluate_exemptions_and_spanish(client: TestClient) -> None:
     body = EvaluateResponse.model_validate(client.post("/api/evaluate", json=payload).json())
     assert [e.id for e in body.possible_exemptions] == ["medicare"]
     assert body.summary.startswith("Mayo de 2027")
+
+
+def test_deadline(client: TestClient) -> None:
+    assert "/api/deadline" in client.get("/openapi.json").json()["paths"]
+    res = client.post("/api/deadline", json={"caseInfo": _dump(JORGE_CASE)})
+    assert res.status_code == 200
+    body = DeadlineResponse.model_validate(res.json())
+    assert body.deadline is not None
+    assert body.deadline.date == "2027-07-12"
+    assert body.deadline.rule_id == "rfi_response_days"
+
+    no_rfi = _dump(JORGE_CASE) | {"rfiReceivedDate": None}
+    body = DeadlineResponse.model_validate(client.post("/api/deadline", json={"caseInfo": no_rfi}).json())
+    assert body.deadline is None
 
 
 def test_packet_and_timeline_pdfs(client: TestClient) -> None:

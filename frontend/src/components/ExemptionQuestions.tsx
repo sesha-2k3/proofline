@@ -30,7 +30,7 @@ export function ExemptionQuestions() {
   const answerFor = (id: string) => state.exemptionAnswers.find((a) => a.id === id)?.answer
 
   return (
-    <section className="space-y-3 rounded-lg border border-line bg-surface p-4">
+    <section className="space-y-3 rounded-[var(--radius-card)] border border-line bg-surface shadow-[var(--shadow-card)] p-4">
       <h3 className="text-lg font-semibold">{t('exemptionsTitle')}</h3>
       <p className="text-sm text-muted">{t('exemptionsIntro')}</p>
       <ul className="space-y-3">

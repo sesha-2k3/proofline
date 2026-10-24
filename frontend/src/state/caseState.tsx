@@ -1,6 +1,7 @@
 import { createContext, useContext, useReducer, type Dispatch, type ReactNode } from 'react'
 import type {
   CaseInfo,
+  Deadline,
   DocumentResult,
   EvaluateResponse,
   EvidenceRecord,
@@ -31,6 +32,10 @@ export interface CaseState {
   documents: CaseDocument[]
   records: EvidenceRecord[]
   evaluation: EvaluateResponse | null
+  // Last non-null evaluation before the current one, for Results transitions.
+  priorEvaluation: EvaluateResponse | null
+  // From POST /api/deadline, or evaluation.deadline after Evaluate.
+  deadline: Deadline | null
   exemptionAnswers: ExemptionAnswer[]
   submissions: SubmissionEntry[]
   step: Step
@@ -48,6 +53,7 @@ export type CaseAction =
   | { type: 'REMOVE_DOCUMENT'; docId: string }
   | { type: 'SET_RECORDS'; records: EvidenceRecord[] }
   | { type: 'SET_EVALUATION'; evaluation: EvaluateResponse | null }
+  | { type: 'SET_DEADLINE'; deadline: Deadline | null }
   | { type: 'SET_EXEMPTION_ANSWER'; answer: ExemptionAnswer }
   | { type: 'ADD_SUBMISSION'; submission: SubmissionEntry }
   | { type: 'REMOVE_SUBMISSION'; index: number }
@@ -62,6 +68,8 @@ const initialCaseState: CaseState = {
   documents: [],
   records: [],
   evaluation: null,
+  priorEvaluation: null,
+  deadline: null,
   exemptionAnswers: [],
   submissions: [],
   step: 1,
@@ -90,7 +98,15 @@ function caseReducer(state: CaseState, action: CaseAction): CaseState {
     case 'SET_RECORDS':
       return { ...state, records: action.records }
     case 'SET_EVALUATION':
-      return { ...state, evaluation: action.evaluation }
+      return {
+        ...state,
+        evaluation: action.evaluation,
+        // Last non-null evaluation; survives a review-edit clear so Results can animate from it.
+        priorEvaluation: state.evaluation ?? state.priorEvaluation,
+        deadline: action.evaluation?.deadline ?? state.deadline,
+      }
+    case 'SET_DEADLINE':
+      return { ...state, deadline: action.deadline }
     case 'SET_EXEMPTION_ANSWER':
       return {
         ...state,

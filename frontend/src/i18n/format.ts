@@ -2,6 +2,12 @@ import type { UiLang } from '../state/caseState'
 
 const LOCALES: Record<UiLang, string> = { en: 'en-US', es: 'es-US' }
 
+// "2027-05" -> "May" / "may" (short name for compact month cells)
+export function formatMonthShort(month: string, lang: UiLang): string {
+  const [year, m] = month.split('-').map(Number)
+  if (!year || !m) return month
+  return new Intl.DateTimeFormat(LOCALES[lang], { month: 'short', timeZone: 'UTC' }).format(new Date(Date.UTC(year, m - 1, 1)))
+}
 // "2027-05" -> "May 2027" / "mayo de 2027"
 export function formatMonth(month: string, lang: UiLang): string {
   const [year, m] = month.split('-').map(Number)

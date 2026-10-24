@@ -1,9 +1,12 @@
 import { useRef, useState } from 'react'
-import { evaluate, validateRecords, type EvidenceRecord } from '../api/client'
+import { FileSearch } from 'lucide-react'
+import { evaluate, validateRecords, type EvidenceRecord, type PageView } from '../api/client'
 import type { MessageKey } from '../i18n/en'
 import { fill, useT } from '../i18n/useT'
 import { useCaseState, type CaseDocument } from '../state/caseState'
 import { ExemptionQuestions } from './ExemptionQuestions'
+import { SourceView } from './SourceView'
+import { StatusIcon } from './StatusIcon'
 
 type FieldKey =
   | 'personName'
@@ -232,8 +235,9 @@ export function ReviewPanel({ onBack, onEvaluated }: ReviewPanelProps) {
 
       <p
         aria-live="polite"
-        className={`rounded-md p-3 font-medium ${unconfirmed > 0 ? 'bg-conditional-soft text-conditional' : 'bg-meets-soft text-meets'}`}
+        className={`flex flex-wrap items-center gap-2 rounded-md p-3 font-medium ${unconfirmed > 0 ? 'bg-conditional-soft text-conditional' : 'bg-meets-soft text-meets'}`}
       >
+        <StatusIcon kind={unconfirmed > 0 ? 'needsConfirmation' : 'confirmed'} />
         {unconfirmed > 0 ? fill(t('unconfirmedCount'), { n: unconfirmed }) : t('allConfirmed')}
         {checking && <span className="ml-2 text-sm font-normal text-muted">{t('checkingRecords')}</span>}
       </p>
@@ -253,7 +257,7 @@ export function ReviewPanel({ onBack, onEvaluated }: ReviewPanelProps) {
         const doc = state.documents.find((d) => d.docId === docId)
         const docRecords = records.filter((r) => r.docId === docId)
         return (
-          <article key={docId} className="rounded-lg border border-line bg-surface p-4">
+          <article key={docId} className="rounded-[var(--radius-card)] border border-line bg-surface p-4 shadow-[var(--shadow-card)]">
             <h3 className="mb-3 font-semibold break-all">
               {doc?.file.name ?? docId}
               <span className="ml-2 text-sm font-normal text-muted">{t(`docType_${docRecords[0].docType}`)}</span>
@@ -266,6 +270,8 @@ export function ReviewPanel({ onBack, onEvaluated }: ReviewPanelProps) {
                     key={record.id}
                     record={record}
                     index={index}
+                    pages={doc?.result?.pages ?? []}
+                    fileName={doc?.file.name ?? docId}
                     onChange={(key, changes) => changeField(record.id, key, changes)}
                   />
                 ))}
@@ -294,7 +300,7 @@ export function ReviewPanel({ onBack, onEvaluated }: ReviewPanelProps) {
           {evaluating ? t('evaluating') : t('evaluate')}
         </button>
         <span aria-live="polite" className="sr-only">
-          {evaluating ? t('evaluating') : ''}
+          {evaluating ? t('evaluating') : error === t('evaluateError') ? error : ''}
         </span>
       </div>
     </section>
@@ -304,12 +310,16 @@ export function ReviewPanel({ onBack, onEvaluated }: ReviewPanelProps) {
 interface RecordTableProps {
   record: EvidenceRecord
   index: number
+  pages: PageView[]
+  fileName: string
   onChange: (key: FieldKey, changes: Partial<AnyField>) => void
 }
 
-function RecordTable({ record, index, onChange }: RecordTableProps) {
+function RecordTable({ record, index, pages, fileName, onChange }: RecordTableProps) {
   const t = useT()
   const flags = record.flags ?? []
+  const [sourceKey, setSourceKey] = useState<FieldKey | null>(null)
+  const sourceField = sourceKey ? record[sourceKey] : null
   return (
     <div>
       <h4 className="mb-1 text-sm font-semibold text-muted">
@@ -324,7 +334,7 @@ function RecordTable({ record, index, onChange }: RecordTableProps) {
               <th className="py-1 pr-2 font-medium">{t('colValue')}</th>
               <th className="py-1 pr-2 font-medium">{t('colConfidence')}</th>
               <th className="py-1 pr-2 font-medium">{t('colVerification')}</th>
-              <th className="py-1 pr-2 font-medium">{t('colEvidence')}</th>
+              <th className="hidden py-1 pr-2 font-medium sm:table-cell">{t('colEvidence')}</th>
               <th className="py-1 pr-2 font-medium">{t('colPage')}</th>
               <th className="py-1 font-medium">{t('colAction')}</th>
             </tr>
@@ -336,14 +346,20 @@ function RecordTable({ record, index, onChange }: RecordTableProps) {
               const label = t(`field_${key}` as MessageKey)
               const flagged = needsConfirmation(field)
               return (
-                <tr key={key} className={`border-b border-line align-top ${flagged ? 'bg-conditional-soft' : ''}`}>
-                  <th scope="row" className="py-1.5 pr-2 text-left font-medium">
+                <tr
+                  key={key}
+                  className={`border-b border-line align-top ${flagged ? 'bg-conditional-soft shadow-[inset_4px_0_0_var(--color-conditional)]' : ''}`}
+                >
+                  <th scope="row" className={`py-1.5 pr-2 text-left font-medium ${flagged ? 'pl-2' : ''}`}>
                     {label}
                     {flagged && (
-                      <span className="mt-0.5 block text-xs font-semibold text-conditional">{t('needsConfirmation')}</span>
+                      <span className="mt-1 flex w-max items-center gap-1 rounded-full border border-conditional bg-surface px-2 py-0.5 text-xs font-semibold text-conditional">
+                        <StatusIcon kind="needsConfirmation" className="h-3.5 w-3.5" />
+                        {t('needsConfirmation')}
+                      </span>
                     )}
                   </th>
-                  <td className="py-1.5 pr-2">
+                  <td className="tabular py-1.5 pr-2">
                     <FieldEditor
                       key={String(field.value)}
                       kind={FIELD_KIND[key]}
@@ -351,6 +367,23 @@ function RecordTable({ record, index, onChange }: RecordTableProps) {
                       label={fill(t('editField'), { field: label })}
                       onCommit={(value) => onChange(key, { value, confirmed: true } as Partial<AnyField>)}
                     />
+                    {field.evidence && pages.length > 0 && (
+                      <button
+                        type="button"
+                        onClick={() => setSourceKey(key)}
+                        className="mt-1 inline-flex items-center gap-1 rounded-md text-left text-xs font-semibold text-brand-strong underline hover:text-brand"
+                      >
+                        <FileSearch aria-hidden="true" focusable="false" className="h-3.5 w-3.5 shrink-0" />
+                        {fill(t('viewSource'), { field: label })}
+                      </button>
+                    )}
+                    {field.evidence && (
+                      // Under 640 px the evidence column is hidden, so the evidence stacks under the value.
+                      <p className="mt-1 font-mono text-xs break-words text-muted sm:hidden">
+                        <span className="sr-only">{t('colEvidence')}: </span>
+                        {field.evidence}
+                      </p>
+                    )}
                   </td>
                   <td className={`py-1.5 pr-2 ${field.confidence === 'low' ? 'font-semibold text-conditional' : ''}`}>
                     {t(`confidence_${field.confidence}`)}
@@ -360,11 +393,14 @@ function RecordTable({ record, index, onChange }: RecordTableProps) {
                       {t(`verification_${field.verification}`)}
                     </span>
                   </td>
-                  <td className="py-1.5 pr-2 font-mono text-xs break-words text-muted">{field.evidence ?? '—'}</td>
+                  <td className="hidden py-1.5 pr-2 font-mono text-xs break-words text-muted sm:table-cell">{field.evidence ?? '—'}</td>
                   <td className="py-1.5 pr-2">{field.page}</td>
                   <td className="py-1.5">
                     {field.confirmed ? (
-                      <span className="font-semibold whitespace-nowrap text-meets">✓ {t('confirmed')}</span>
+                      <span className="inline-flex items-center gap-1 text-xs font-semibold text-meets">
+                        <StatusIcon kind="confirmed" />
+                        {t('confirmedByNavigator')}
+                      </span>
                     ) : (
                       <button
                         type="button"
@@ -384,6 +420,15 @@ function RecordTable({ record, index, onChange }: RecordTableProps) {
           </tbody>
         </table>
       </div>
+      {sourceKey && sourceField && (
+        <SourceView
+          fieldLabel={t(`field_${sourceKey}` as MessageKey)}
+          fileName={fileName}
+          page={pages.find((p) => p.page === sourceField.page) ?? null}
+          evidence={sourceField.evidence}
+          onClose={() => setSourceKey(null)}
+        />
+      )}
       {flags.length > 0 && (
         <div className="mt-2 text-sm">
           <p className="font-medium">{t('flagsLabel')}</p>

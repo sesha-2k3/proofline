@@ -3,6 +3,7 @@
 ingest -> render -> classify -> extract -> normalize -> verify.
 Nothing is written to disk or kept after the request.
 """
+import base64
 import time
 from collections.abc import Callable
 from dataclasses import dataclass
@@ -13,10 +14,10 @@ from app.pipeline.extract import MANUAL_ENTRY_WARNING, extract
 from app.pipeline.extract.llm import LlmClient
 from app.pipeline.ingest import ingest
 from app.pipeline.normalize import normalize
-from app.pipeline.render import render
+from app.pipeline.render import PageContent, render
 from app.pipeline.verify import verify
 from app.rules import accessors
-from app.schemas.api import DocumentResult
+from app.schemas.api import DocumentResult, LineBox, PageView, TextLine
 from app.schemas.common import DocType
 from app.schemas.evidence import PipelineStage
 from app.settings import Settings
@@ -120,4 +121,20 @@ def process_document(
         warnings=warnings,
         demo_mode=settings.demo_mode,
         rules_version=accessors.rules_version(),
+        pages=[_page_view(p) for p in pages],
+    )
+
+
+def _page_view(p: PageContent) -> PageView:
+    """In-memory page preview for the Source_View; nothing is written to disk."""
+    url = None
+    if p.preview_png is not None:
+        url = "data:image/png;base64," + base64.b64encode(p.preview_png).decode("ascii")
+    return PageView(
+        page=p.page,
+        image_data_url=url,
+        lines=[
+            TextLine(text=t, box=LineBox(x0=b[0], y0=b[1], x1=b[2], y1=b[3]))
+            for t, b in p.lines
+        ],
     )

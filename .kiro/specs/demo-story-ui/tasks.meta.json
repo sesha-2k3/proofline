@@ -1,0 +1,501 @@
+{
+  "pbtResults": {},
+  "executionHistory": {
+    "1.1 Add the story copy in EN and ES": [
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792884117311
+      },
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792884126358
+      },
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792884208873
+      }
+    ],
+    "1.2 Set up frontend tests and the first story helpers": [
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792884117346
+      },
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792884126401
+      },
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792884209570
+      }
+    ],
+    "1.3 Rebuild the landing hero": [
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792884117378
+      },
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792884215420
+      },
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792884267388
+      }
+    ],
+    "1.4 Add the person-first case header": [
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792884117398
+      },
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792884216228
+      },
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792884268237
+      }
+    ],
+    "1.5 Make the Packet step the finish line": [
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792884117419
+      },
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792884217093
+      },
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792884269010
+      }
+    ],
+    "2.1 Add `POST /api/deadline`": [
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792884117437
+      },
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792884126562
+      },
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792884210186
+      }
+    ],
+    "2.3 Store the backend deadline in case state": [
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792884117477
+      },
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792884280947
+      },
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792884352552
+      }
+    ],
+    "2.4 Build the deadline chip on every step": [
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792884117498
+      },
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792884355171
+      },
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792884423984
+      }
+    ],
+    "3. Checkpoint - Ensure all tests pass": [
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792884117516
+      },
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792884428560
+      },
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792884454594
+      }
+    ],
+    "4.1 Add the Results helpers": [
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792884117536
+      },
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792884455153
+      },
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792884515399
+      }
+    ],
+    "4.5 Keep the prior evaluation in state": [
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792884117554
+      },
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792884457006
+      },
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792884516062
+      }
+    ],
+    "4.6 Add the story headline and month strip to Results": [
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792884117573
+      },
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792884526480
+      },
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792884641564
+      }
+    ],
+    "4.7 Add progress bars and the calm transition to month cards": [
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792884117592
+      },
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792884526548
+      },
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792884642369
+      }
+    ],
+    "5.1 Add the stage chip helper": [
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792884117611
+      },
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792884456378
+      },
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792884517049
+      }
+    ],
+    "5.3 Build the stage strip and keep the detail view": [
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792884117629
+      },
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792884526571
+      },
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792884643603
+      }
+    ],
+    "6. Checkpoint - Ensure all tests pass": [
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792884117647
+      },
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792884644221
+      },
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792884814567
+      }
+    ],
+    "7.1 Add the typeface, theme tokens, and reduced-motion rule": [
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792884117669
+      },
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792884815854
+      },
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792884870037
+      }
+    ],
+    "7.2 Replace text glyphs with one icon set and apply tabular numerals": [
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792884117689
+      },
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792884876718
+      },
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792885017407
+      }
+    ],
+    "7.3 Build the connected stepper": [
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792884117711
+      },
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792884816402
+      },
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792884870758
+      }
+    ],
+    "7.4 Add skeleton loading states": [
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792884117729
+      },
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792885018308
+      },
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792885080977
+      }
+    ],
+    "8. Checkpoint - Ensure all tests pass": [
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792884117747
+      },
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792885081640
+      },
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792885113677
+      }
+    ],
+    "9.1 Add page views to the document result": [
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792884117767
+      },
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792885114491
+      },
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792885160535
+      }
+    ],
+    "9.2 Produce line boxes and preview images in the pipeline": [
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792884117784
+      },
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792885162568
+      },
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792885282467
+      }
+    ],
+    "9.5 Add the highlight lookup helper": [
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792884117802
+      },
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792885115452
+      },
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792885161336
+      }
+    ],
+    "9.7 Build the source view": [
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792884117826
+      },
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792885163217
+      },
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792885283318
+      }
+    ],
+    "10.1 Run all checks and the full story walkthrough": [
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792884117849
+      },
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792885284107
+      },
+      {
+        "executionId": "aed27783-3687-4170-9439-13f0e00a6f12",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792885572395
+      },
+      {
+        "executionId": "aed27783-3687-4170-9439-13f0e00a6f12",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792885658648
+      }
+    ],
+    "1. Story copy, landing page, case header, and packet finish line": [
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792884269028
+      }
+    ],
+    "2. Deadline from the backend and the deadline chip": [
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792884424018
+      }
+    ],
+    "4. Results headline, month strip, progress bars, and the Conditional → Meets transition": [
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792884642412
+      }
+    ],
+    "5. Live pipeline stage strip on the Documents step": [
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792884643630
+      }
+    ],
+    "7. Visual polish": [
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792885081012
+      }
+    ],
+    "9. Source highlight (last; optional, if time)": [
+      {
+        "executionId": "82d042e2-889b-4ab7-95b5-b19c6c6ecf5a",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792885283343
+      }
+    ],
+    "10. Final walkthrough in EN and ES at 1280 px and 375 px": [
+      {
+        "executionId": "aed27783-3687-4170-9439-13f0e00a6f12",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792885658735
+      }
+    ]
+  }
+}

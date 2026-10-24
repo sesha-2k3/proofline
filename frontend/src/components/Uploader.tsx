@@ -4,6 +4,7 @@ import type { MessageKey } from '../i18n/en'
 import { fill, useT } from '../i18n/useT'
 import { useCaseState, type CaseDocument } from '../state/caseState'
 import { PipelineTrace } from './PipelineTrace'
+import { StageStrip } from './StageStrip'
 
 // Upload limit shown to the user and checked before sending. The backend enforces
 // MAX_UPLOAD_MB (default 10) and answers UNSUPPORTED_FILE either way.
@@ -66,17 +67,28 @@ export function Uploader({ samples, onContinue, onBack }: UploaderProps) {
     [t],
   )
 
+  // Screen-reader announcement for upload start/finish/failure (aria-live polite region).
+  const [announcement, setAnnouncement] = useState('')
+  const announce = useCallback(
+    (key: 'uploadAnnounceStart' | 'uploadAnnounceDone' | 'uploadAnnounceError', file: File) =>
+      setAnnouncement(fill(t(key), { file: file.name })),
+    [t],
+  )
+
   const upload = useCallback(
     async (docId: string, file: File, docTypeHint?: DocType) => {
       dispatch({ type: 'UPDATE_DOCUMENT', docId, changes: { status: 'uploading', error: undefined } })
+      announce('uploadAnnounceStart', file)
       try {
         const result = await postDocument(file, docId, docTypeHint)
         dispatch({ type: 'UPDATE_DOCUMENT', docId, changes: { status: 'done', result } })
+        announce('uploadAnnounceDone', file)
       } catch (error) {
         dispatch({ type: 'UPDATE_DOCUMENT', docId, changes: { status: 'error', result: null, error: errorText(error) } })
+        announce('uploadAnnounceError', file)
       }
     },
-    [dispatch, errorText],
+    [dispatch, errorText, announce],
   )
 
   // Adds files to the case and uploads them in parallel. Files that fail the
@@ -99,10 +111,11 @@ export function Uploader({ samples, onContinue, onBack }: UploaderProps) {
           },
         })
         if (allowed) uploads.push(upload(docId, file))
+        else announce('uploadAnnounceError', file)
       }
       await Promise.all(uploads)
     },
-    [dispatch, t, upload],
+    [dispatch, t, upload, announce],
   )
 
   // Sample mode: fetch each /samples/<name> as a File and upload it (once per case).
@@ -170,7 +183,7 @@ export function Uploader({ samples, onContinue, onBack }: UploaderProps) {
         }}
         onDragLeave={() => setDragging(false)}
         onDrop={onDrop}
-        className={`rounded-lg border-2 border-dashed p-6 text-center ${
+        className={`rounded-[var(--radius-card)] border-2 border-dashed p-6 text-center ${
           dragging ? 'border-brand bg-brand-soft' : 'border-line bg-surface'
         }`}
       >
@@ -209,7 +222,11 @@ export function Uploader({ samples, onContinue, onBack }: UploaderProps) {
         </div>
       )}
 
-      <p aria-live="polite" className="text-sm text-muted">
+      <p aria-live="polite" className="sr-only">
+        {announcement}
+      </p>
+
+      <p className="text-sm text-muted">
         {docs.length === 0 ? t('noDocuments') : fill(t('uploadStatusSummary'), { done: doneCount, total: docs.length })}
       </p>
 
@@ -219,7 +236,7 @@ export function Uploader({ samples, onContinue, onBack }: UploaderProps) {
           const unknown = result?.docType === 'unknown'
           const hint = hints[doc.docId] ?? ''
           return (
-            <li key={doc.docId} className="rounded-lg border border-line bg-surface p-4">
+            <li key={doc.docId} className="rounded-[var(--radius-card)] border border-line bg-surface shadow-[var(--shadow-card)] p-4">
               <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
                 <span className="font-medium break-all">{doc.file.name}</span>
                 <span
@@ -259,7 +276,7 @@ export function Uploader({ samples, onContinue, onBack }: UploaderProps) {
                 </span>
               </div>
 
-              {doc.error && <p className="mt-2 text-sm text-short">{doc.error}</p>}
+              <StageStrip document={doc} />
 
               {unknown && doc.status === 'done' && (
                 <div className="mt-3 flex flex-wrap items-end gap-3 rounded-md bg-conditional-soft p-3">
@@ -292,7 +309,7 @@ export function Uploader({ samples, onContinue, onBack }: UploaderProps) {
                 </div>
               )}
 
-              {result && <PipelineTrace result={result} />}
+              <PipelineTrace document={doc} />
             </li>
           )
         })}
