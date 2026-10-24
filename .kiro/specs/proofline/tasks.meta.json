@@ -72,6 +72,114 @@
         "chatSessionId": "sess_70bcb00c-7094-4f41-ad9c-eb0517702090",
         "timestamp": 1792878210255
       }
+    ],
+    "9. [BE] B9 — pipeline: normalize, verify, orchestrator, real POST /documents": [
+      {
+        "executionId": "eb87daa4-bf8c-4854-ade5-0a8bfb249440",
+        "chatSessionId": "sess_2d6be6a4-9ddb-442f-b014-7855f775edf8",
+        "timestamp": 1792878517949
+      },
+      {
+        "executionId": "eb87daa4-bf8c-4854-ade5-0a8bfb249440",
+        "chatSessionId": "sess_2d6be6a4-9ddb-442f-b014-7855f775edf8",
+        "timestamp": 1792878816110
+      }
+    ],
+    "10. [BE] B10 — validation, evaluate, gaps, exemptions, deadline, summary": [
+      {
+        "executionId": "6a249d57-2b58-4c91-8dbe-234e1c73c635",
+        "chatSessionId": "sess_7ae599a3-c482-4375-93aa-a0fe2f739702",
+        "timestamp": 1792878855482
+      },
+      {
+        "executionId": "6a249d57-2b58-4c91-8dbe-234e1c73c635",
+        "chatSessionId": "sess_7ae599a3-c482-4375-93aa-a0fe2f739702",
+        "timestamp": 1792879193906
+      }
+    ],
+    "11. [BE] B11 — packet and submission record PDFs": [
+      {
+        "executionId": "d047aabf-3234-47fa-aa2f-9ece7ed7e013",
+        "chatSessionId": "sess_232800de-b3c6-4c7c-a6ef-edb7adfb1db1",
+        "timestamp": 1792879214618
+      },
+      {
+        "executionId": "d047aabf-3234-47fa-aa2f-9ece7ed7e013",
+        "chatSessionId": "sess_232800de-b3c6-4c7c-a6ef-edb7adfb1db1",
+        "timestamp": 1792879352984
+      }
+    ],
+    "12. [BE] B12 — pipeline evaluation script": [
+      {
+        "executionId": "a45c9dec-2064-4b28-b1c2-78d13fcb17a9",
+        "chatSessionId": "sess_e7418cdc-b227-4dc8-b8e5-a50c3debb516",
+        "timestamp": 1792879377804
+      },
+      {
+        "executionId": "a45c9dec-2064-4b28-b1c2-78d13fcb17a9",
+        "chatSessionId": "sess_e7418cdc-b227-4dc8-b8e5-a50c3debb516",
+        "timestamp": 1792879475017
+      }
+    ],
+    "13. [FE] F1–F2 — foundations, shell, landing": [
+      {
+        "executionId": "2e29aaf4-d477-44bb-8c25-85d3f7e7dde6",
+        "chatSessionId": "sess_c274e4c8-cb90-4370-adb0-6691d5a9c5f9",
+        "timestamp": 1792879593523
+      },
+      {
+        "executionId": "2e29aaf4-d477-44bb-8c25-85d3f7e7dde6",
+        "chatSessionId": "sess_c274e4c8-cb90-4370-adb0-6691d5a9c5f9",
+        "timestamp": 1792879715796
+      }
+    ],
+    "14. [FE] F3–F4 — case setup, uploader, pipeline trace": [
+      {
+        "executionId": "6a0629ba-96ee-4d22-b2c5-b930e0632e39",
+        "chatSessionId": "sess_238b66a6-7bf0-42a0-b255-b538eccaeca9",
+        "timestamp": 1792879765633
+      },
+      {
+        "executionId": "6a0629ba-96ee-4d22-b2c5-b930e0632e39",
+        "chatSessionId": "sess_238b66a6-7bf0-42a0-b255-b538eccaeca9",
+        "timestamp": 1792879991291
+      }
+    ],
+    "15. [FE] F5–F6 — review, exemptions, results": [
+      {
+        "executionId": "5fb7acd6-fe6f-47e1-881d-bec8c82cee1e",
+        "chatSessionId": "sess_1cad2851-505e-418f-aff1-28412a50a769",
+        "timestamp": 1792880006288
+      },
+      {
+        "executionId": "5fb7acd6-fe6f-47e1-881d-bec8c82cee1e",
+        "chatSessionId": "sess_1cad2851-505e-418f-aff1-28412a50a769",
+        "timestamp": 1792880271787
+      }
+    ],
+    "16. [FE] F7–F8 — packet panel, polish, walkthrough": [
+      {
+        "executionId": "8b0086fa-b64f-4f15-8846-80262d1edeb5",
+        "chatSessionId": "sess_1dcfcfab-22f4-41c6-b2cc-b12b147d4290",
+        "timestamp": 1792880380263
+      },
+      {
+        "executionId": "8b0086fa-b64f-4f15-8846-80262d1edeb5",
+        "chatSessionId": "sess_1dcfcfab-22f4-41c6-b2cc-b12b147d4290",
+        "timestamp": 1792880532210
+      }
+    ],
+    "17. [BE+FE] B13 + Part 6 — Docker, deploy, README, hooks run": [
+      {
+        "executionId": "ddd62ecb-495f-437c-bd30-3f1795b78e90",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792880573982
+      },
+      {
+        "executionId": "ddd62ecb-495f-437c-bd30-3f1795b78e90",
+        "chatSessionId": "sess_d9bb604d-5e35-4ebd-abb6-e784c9f79234",
+        "timestamp": 1792880771769
+      }
     ]
   }
 }
