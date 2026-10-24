@@ -29,7 +29,7 @@ SCHOOL_PATH = "school_half_time"
 
 STATUS_RANK = {"short": 0, "conditional": 1, "meets": 2}
 
-_FIELD_NAMES = [
+FIELD_NAMES = [
     "person_name",
     "issuer",
     "org_type",
@@ -110,14 +110,14 @@ def case_months(case_info: CaseInfo) -> list[str]:
 
 def is_countable(record: EvidenceRecord) -> bool:
     """Decision 1: every present field is high-confidence or navigator-confirmed."""
-    for name in _FIELD_NAMES:
+    for name in FIELD_NAMES:
         f = getattr(record, name)
         if f is not None and f.confidence != "high" and not f.confirmed:
             return False
     return True
 
 
-def _volunteer_eligible(record: EvidenceRecord) -> bool:
+def volunteer_eligible(record: EvidenceRecord) -> bool:
     allowed = accessors.allowed_volunteer_org_types()
     if record.org_type is None or record.org_type.value not in allowed:
         return False
@@ -140,17 +140,21 @@ def _dates(record: EvidenceRecord) -> tuple[date, date] | None:
     return date.fromisoformat(record.period_start.value), date.fromisoformat(record.period_end.value)
 
 
+def dedupe_key(r: EvidenceRecord) -> tuple:
+    """Duplicate identity: same doc_type, issuer (case-insensitive), and period."""
+    return (r.doc_type, (r.issuer.value or "").casefold(), r.period_start.value, r.period_end.value)
+
+
+def dedupe_order(r: EvidenceRecord) -> tuple:
+    """Which copy of a duplicate the ledger keeps: a countable one first, then the smallest id."""
+    return (not is_countable(r), r.id)
+
+
 def _dedupe(records: list[EvidenceRecord]) -> list[EvidenceRecord]:
     """Collapse duplicates (same doc_type, issuer, period). Keep a countable one first, then the smallest id."""
     kept: dict[tuple, EvidenceRecord] = {}
-    for r in sorted(records, key=lambda r: (not is_countable(r), r.id)):
-        key = (
-            r.doc_type,
-            (r.issuer.value or "").casefold(),
-            r.period_start.value,
-            r.period_end.value,
-        )
-        kept.setdefault(key, r)
+    for r in sorted(records, key=dedupe_order):
+        kept.setdefault(dedupe_key(r), r)
     return sorted(kept.values(), key=lambda r: r.id)
 
 
@@ -238,7 +242,7 @@ def evaluate_months(case_info: CaseInfo, records: list[EvidenceRecord]) -> list[
             for m in overlap:
                 excluded_ids[m].append(r.id)
             continue
-        if r.activity == "volunteer" and not _volunteer_eligible(r):
+        if r.activity == "volunteer" and not volunteer_eligible(r):
             continue
         counted.append(r)
         for m in overlap:

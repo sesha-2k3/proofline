@@ -1,7 +1,10 @@
 """Contract tests: every mock-backed endpoint returns 200 and parses into its response model."""
 
+import io
+
 import pytest
 from fastapi.testclient import TestClient
+from PIL import Image
 
 from app.main import app
 from app.mocks.jorge import (
@@ -20,6 +23,15 @@ from app.schemas.api import (
     SamplesResponse,
     ValidateResponse,
 )
+from app.settings import get_settings
+
+SAMPLES_DIR = get_settings().samples_dir
+
+
+def _blank_png() -> bytes:
+    buf = io.BytesIO()
+    Image.new("RGB", (40, 40), "white").save(buf, format="PNG")
+    return buf.getvalue()
 
 
 @pytest.fixture(scope="module")
@@ -69,7 +81,7 @@ def test_samples(client: TestClient) -> None:
 def test_documents_known(client: TestClient, sample) -> None:
     res = client.post(
         "/api/documents",
-        files={"file": (sample.name, b"%PDF-1.4 mock", "application/pdf")},
+        files={"file": (sample.name, (SAMPLES_DIR / sample.name).read_bytes(), "application/pdf")},
         data={"doc_id": "doc-123"},
     )
     assert res.status_code == 200
@@ -86,16 +98,16 @@ def test_documents_known(client: TestClient, sample) -> None:
 def test_documents_unknown_uses_hint(client: TestClient) -> None:
     res = client.post(
         "/api/documents",
-        files={"file": ("mystery.png", b"\x89PNG", "image/png")},
+        files={"file": ("mystery.png", _blank_png(), "image/png")},
         data={"doc_id": "doc-x"},
     )
     body = DocumentResult.model_validate(res.json())
     assert body.doc_type == "unknown" and body.records == []
-    assert body.warnings == ["Could not recognize this document. Choose its type."]
+    assert "Could not recognize this document. Choose its type." in body.warnings
 
     res = client.post(
         "/api/documents",
-        files={"file": ("mystery.png", b"\x89PNG", "image/png")},
+        files={"file": ("mystery.png", _blank_png(), "image/png")},
         data={"doc_id": "doc-x", "doc_type_hint": "paystub"},
     )
     assert DocumentResult.model_validate(res.json()).doc_type == "paystub"

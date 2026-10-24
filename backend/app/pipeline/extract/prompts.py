@@ -114,3 +114,16 @@ def extraction_prompt(doc_type: DocType, pages: list[PageContent]) -> str:
 
 def classification_prompt(pages: list[PageContent]) -> str:
     return f"{CLASSIFY_PROMPT}\n\n{_page_text_block(pages)}"
+
+
+def rephrase_prompt(text: str, lang: str) -> str:
+    """Ask the LLM to reword a code-written summary. It may not add, drop, or change facts or numbers."""
+    language = "Spanish" if lang == "es" else "English"
+    return (
+        f"Rewrite this summary in plain {language} at about a 6th-grade reading level. "
+        "Keep every number, date, and dollar amount exactly as written. "
+        "Do not add facts, advice, or opinions. Do not say whether the person is eligible or exempt. "
+        "Keep the sentence saying MassHealth makes the final decision. "
+        'Return JSON only: {"text": "<rewritten summary>"}\n\n'
+        f"Summary:\n{text}"
+    )

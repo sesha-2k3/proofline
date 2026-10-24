@@ -18,6 +18,7 @@ from app.pipeline.extract.prompts import (
     RETRY_NOTE,
     classification_prompt,
     extraction_prompt,
+    rephrase_prompt,
 )
 from app.pipeline.render import PageContent
 from app.schemas.common import DocType
@@ -95,6 +96,10 @@ class _ClassifyReply(BaseModel):
     doc_type: str
 
 
+class _RephraseReply(BaseModel):
+    text: str
+
+
 _FENCE = re.compile(r"^```(?:json)?\s*|\s*```$")
 
 
@@ -136,6 +141,11 @@ class LlmClient:
         self, doc_type: DocType, pages: list[PageContent]
     ) -> RawExtraction | None:
         return self._ask(extraction_prompt(doc_type, pages), pages, RawExtraction)
+
+    def rephrase(self, text: str, lang: str) -> str | None:
+        """Reword a code-written summary (the caller checks that every number is unchanged)."""
+        reply = self._ask(rephrase_prompt(text, lang), [], _RephraseReply)
+        return None if reply is None else reply.text
 
 
 def make_llm_client(settings: Settings) -> LlmClient | None:

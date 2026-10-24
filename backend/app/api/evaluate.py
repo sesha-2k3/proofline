@@ -1,32 +1,40 @@
-"""Mock POST /evaluate (B4). Replaced by the ledger and reporting in B10."""
+"""POST /evaluate: validation -> ledger -> deadline, exemptions, gaps, summary. Code decides; the LLM may only reword the summary."""
 
-from fastapi import APIRouter
+from typing import Annotated
 
-from app.mocks.jorge import EVAL_AFTER, EVAL_BEFORE, SUMMARIES
+from fastapi import APIRouter, Depends
+
+from app.api.documents import get_llm_client
+from app.ledger.evaluate import evaluate_case
+from app.pipeline.extract.llm import LlmClient
+from app.reporting.deadline import response_deadline
+from app.reporting.exemptions import possible_exemptions
+from app.reporting.gaps import build_gaps
+from app.reporting.summary import build_summary
 from app.rules import accessors
 from app.schemas.api import EvaluateRequest, EvaluateResponse
 from app.settings import get_settings
+from app.validation.checks import validate_records
 
 router = APIRouter(tags=["evaluate"])
 
 
-def _pantry_may_confirmed(body: EvaluateRequest) -> bool:
-    for r in body.records:
-        if r.doc_type == "volunteer_letter" and r.period_start.value == "2027-05-01":
-            return r.hours is not None and r.hours.confirmed
-    return False
-
-
 @router.post("/evaluate", response_model=EvaluateResponse)
-def evaluate(body: EvaluateRequest) -> EvaluateResponse:
-    key = "after" if _pantry_may_confirmed(body) else "before"
-    base = EVAL_AFTER if key == "after" else EVAL_BEFORE
-    yes = {a.id for a in body.exemption_answers if a.answer}
-    return base.model_copy(
-        update={
-            "possible_exemptions": [e for e in accessors.exemptions() if e.id in yes],
-            "summary": SUMMARIES[key][body.case_info.lang],
-            "demo_mode": get_settings().demo_mode,
-        },
-        deep=True,
+def evaluate(
+    body: EvaluateRequest,
+    llm: Annotated[LlmClient | None, Depends(get_llm_client)],
+) -> EvaluateResponse:
+    case = body.case_info
+    records = validate_records(case, body.records)
+    months, best = evaluate_case(case, records)
+    deadline = response_deadline(case)
+    return EvaluateResponse(
+        months=months,
+        best_month=best,
+        deadline=deadline,
+        possible_exemptions=possible_exemptions(body.exemption_answers),
+        gaps=build_gaps(months, best, records),
+        summary=build_summary(months, best, records, deadline, case.lang, llm),
+        demo_mode=get_settings().demo_mode,
+        rules_version=accessors.rules_version(),
     )

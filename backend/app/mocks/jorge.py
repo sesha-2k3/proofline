@@ -233,7 +233,7 @@ _GAPS_BEFORE = [
     GapItem(
         month="2027-05",
         kind="unconfirmed_record",
-        message="The food pantry's May hours were hard to read. Confirm the 24 hours to count them.",
+        message="The Eastside Community Food Pantry's May hours were hard to read. Confirm the 24 hours to count them.",
         suggested_doc_types=["volunteer_letter"],
     ),
     GapItem(
@@ -267,13 +267,13 @@ SUMMARIES: dict[str, dict[str, str]] = {
             f"May 2027 is the strongest month. Counted hours: 68.93 of {_H}. "
             "Income is $737.14 before expenses and $527.14 after. "
             "Whether May meets the requirement depends on rules MassHealth has not settled, "
-            "and on confirming the food pantry's May hours. MassHealth makes the final decision."
+            "and on confirming the Eastside Community Food Pantry's May hours. MassHealth makes the final decision."
         ),
         "es": (
             f"Mayo de 2027 es el mes más fuerte. Horas contadas: 68.93 de {_H}. "
             "Los ingresos son $737.14 antes de gastos y $527.14 después. "
             "Si mayo cumple el requisito depende de reglas que MassHealth aún no ha definido "
-            "y de confirmar las horas de mayo del banco de alimentos. MassHealth toma la decisión final."
+            "y de confirmar las horas de mayo de Eastside Community Food Pantry. MassHealth toma la decisión final."
         ),
     },
     "after": {
