@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+/* Palette. Each value is exposed as a CSS variable (--color-*) and as Tailwind
+   utilities (bg-brand, text-ink, border-line, ...). Text colors meet WCAG AA
+   on the surface colors. */
+@theme {
+  --color-ink: #1f2933;
+  --color-muted: #52606d;
+  --color-surface: #ffffff;
+  --color-canvas: #f5f7fa;
+  --color-line: #cbd2d9;
+  --color-brand: #0b5394;
+  --color-brand-strong: #083d6e;
+  --color-brand-soft: #e6f0fa;
+  --color-meets: #1d6b3a;
+  --color-meets-soft: #e3f4e8;
+  --color-conditional: #8a5a00;
+  --color-conditional-soft: #fdf3dc;
+  --color-short: #a3261b;
+  --color-short-soft: #fbe7e5;
+  --color-focus: #f0b429;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  background-color: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}
