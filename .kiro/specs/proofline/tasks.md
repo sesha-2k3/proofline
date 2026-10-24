@@ -41,6 +41,24 @@ flowchart TD
   T16 --> T17
 ```
 
+```json
+{
+  "waves": [
+    { "id": 0, "tasks": ["1"] },
+    { "id": 1, "tasks": ["2"] },
+    { "id": 2, "tasks": ["3"] },
+    { "id": 3, "tasks": ["4"] },
+    { "id": 4, "tasks": ["5", "6", "13"] },
+    { "id": 5, "tasks": ["7", "14"] },
+    { "id": 6, "tasks": ["8", "15"] },
+    { "id": 7, "tasks": ["9", "16"] },
+    { "id": 8, "tasks": ["10", "12"] },
+    { "id": 9, "tasks": ["11"] },
+    { "id": 10, "tasks": ["17"] }
+  ]
+}
+```
+
 ## Notes
 
 - Task 13 is partly done (scaffold, shell, landing). It finishes after B4: run `npm run gen:api`, add the client wrappers, typed state fields and the health badge. See docs/FRONTEND_REQUESTS.md.
