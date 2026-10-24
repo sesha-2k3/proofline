@@ -1,0 +1,15 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Ledger property tests",
+      "trigger": "PostFileSave",
+      "description": "When ledger code changes, run the ledger tests; on a property-test failure, fix the bug, add the counterexample as a regression test, and log it.",
+      "matcher": "(^|/)lib/ledger/",
+      "action": {
+        "type": "agent",
+        "prompt": "Run `npm test -- tests/ledger`. If a property test fails, show the shrunk counterexample, explain the bug, fix it, add the counterexample as a named regression test, and add a line to docs/KIRO_LOG.md under Property-based testing."
+      }
+    }
+  ]
+}

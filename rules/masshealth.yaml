@@ -1,0 +1,117 @@
+# Proofline rules file. Every rule has a source and a status.
+# Status: confirmed | provisional | unresolved
+# Sources (accessed 2026-10-24):
+#   S1 https://www.mass.gov/info-details/new-work-and-education-requirements-for-masshealth-members
+#   S2 https://www.mass.gov/info-details/masshealth-and-health-connector-acceptable-verifications-list
+#   S3 https://www.mass.gov/doc/external-ob3-set-deck/download  (labeled subject to change)
+#   S5 https://www.mass.gov/MassHealthMemberChanges
+
+meta:
+  program: MassHealth community engagement (work and education) requirements
+  effective_date: "2027-01-01"
+  last_reviewed: "2026-10-24"
+  disclaimer: "Research rules for software. Not legal advice. MassHealth makes all decisions."
+
+compliance_window:
+  - id: one_month_between_renewals
+    description: Member must meet the requirement for one month between last renewal and next renewal.
+    value: 1
+    source: S1
+    status: confirmed
+  - id: applicant_month_before
+    description: New applicants must meet the requirement in the month before they apply.
+    source: S1
+    status: confirmed
+  - id: renewal_frequency_months
+    value: 6
+    source: S5
+    status: confirmed
+  - id: rfi_response_days
+    description: Days to respond to a Request for Information.
+    value: 30
+    source: S3
+    status: provisional
+
+paths:
+  - id: hours_threshold
+    description: Combined qualifying hours per month (work, volunteer, job training).
+    value: 80
+    source: S1
+    status: confirmed
+  - id: work_includes_unpaid
+    description: Work includes unpaid work or work for goods or services.
+    value: true
+    source: S1
+    status: confirmed
+  - id: volunteer_org_requirement
+    description: Volunteering counts only with a non-partisan public or nonprofit organization.
+    allowed_org_types: [public, nonprofit]
+    requires_non_partisan: true
+    source: S1
+    status: confirmed
+  - id: job_training_approved
+    description: Job training must be an approved program. Which programs are approved is not published.
+    source: S1
+    status: unresolved
+  - id: school_half_time
+    description: Enrollment at least half-time qualifies by status, not hours.
+    value: true
+    source: S1
+    status: confirmed
+  - id: income_threshold_cents
+    description: MassHealth determines monthly income of at least $580.
+    value: 58000
+    source: S1
+    status: confirmed
+  - id: seasonal_income_average_months
+    description: Seasonal workers may average $580/month over six months.
+    value: 6
+    source: S1
+    status: confirmed
+  - id: self_employment_income_basis
+    description: Whether self-employment/gig income counts gross or net of expenses for the $580 test.
+    options: [gross, net]
+    source: null
+    status: unresolved
+  - id: pay_period_split_method
+    description: How hours from a pay period spanning two months are assigned.
+    options: [proportional_by_days, by_period_end_date]
+    default_for_display: proportional_by_days
+    source: null
+    status: unresolved
+
+documents:
+  - id: paystub_recency_days
+    description: Pay stubs and employer statements dated within 60 days (from general verification list; may not apply to proving past months).
+    value: 60
+    source: S2
+    status: provisional
+  - id: employer_statement_fields
+    description: Signed employer statement with hours worked, gross pay, employer contact, dated within 60 days.
+    source: S2
+    status: confirmed
+  - id: self_employment_form
+    description: Profit and loss statement or MassHealth Verification of Self-Employment Income form.
+    source: S2
+    status: confirmed
+  - id: volunteer_proof
+    description: Accepted proof for volunteer hours not yet published.
+    source: null
+    status: unresolved
+  - id: school_proof
+    description: Accepted proof for half-time enrollment not yet published.
+    source: null
+    status: unresolved
+
+exemptions:
+  # Each is shown only as "possible exemption — navigator to confirm". Source S1, status confirmed.
+  - { id: pregnant_postpartum, label: "Pregnant or less than 12 months postpartum", source: S1, status: confirmed }
+  - { id: caregiver_child_or_disabled, label: "Parent, guardian, caretaker relative, or family caregiver of a child under 14 or a disabled individual", source: S1, status: confirmed }
+  - { id: medicare, label: "Eligible for Medicare Part A or enrolled in Part B", source: S1, status: confirmed }
+  - { id: former_foster_under_26, label: "Under 26 and had Medicaid when aging out of foster care", source: S1, status: confirmed }
+  - { id: aian, label: "Certain American Indian or Alaska Native individuals", source: S1, status: confirmed }
+  - { id: medical_condition, label: "Disability, addiction, serious mental health condition, serious or complex condition, or SSA blindness/disability (may need to show it significantly impairs ability to work)", source: S1, status: confirmed }
+  - { id: tafdc_or_snap_work_rules, label: "Meeting TAFDC work rules, or in a SNAP household told to meet SNAP work rules", source: S1, status: confirmed }
+  - { id: veteran_total_disability, label: "Veteran with a total VA disability rating", source: S1, status: confirmed }
+  - { id: sud_treatment, label: "In certain substance use disorder treatment programs", source: S1, status: confirmed }
+  - { id: incarceration, label: "Inmate of a public institution, or within the previous three months", source: S1, status: confirmed }

@@ -1,0 +1,15 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "API contract sync",
+      "trigger": "PostFileSave",
+      "description": "When the zod schemas change, bring docs/api-contract.md and lib/mocks/*.json back in line, run the contract tests, and summarize changes for the frontend developer.",
+      "matcher": "(^|/)lib/schemas/",
+      "action": {
+        "type": "agent",
+        "prompt": "Check that docs/api-contract.md and every JSON file in lib/mocks/ still match the zod schemas, run `npm test -- tests/contract`, fix mismatches, and list what changed so I can tell the frontend developer."
+      }
+    }
+  ]
+}

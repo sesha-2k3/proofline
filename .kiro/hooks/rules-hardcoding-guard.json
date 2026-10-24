@@ -1,0 +1,15 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Rules hardcoding guard",
+      "trigger": "PostFileSave",
+      "description": "When anything in lib/ changes, replace eligibility thresholds hardcoded outside lib/rules/ with rules accessors.",
+      "matcher": "(^|/)lib/",
+      "action": {
+        "type": "agent",
+        "prompt": "Check for hardcoded eligibility thresholds (80, 580, 58000, 60, 30) outside lib/rules/. Replace them with rules accessors and tell me."
+      }
+    }
+  ]
+}
