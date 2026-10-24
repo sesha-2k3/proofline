@@ -6,12 +6,31 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 
+from app.api import (
+    documents,
+    evaluate,
+    health,
+    packet,
+    rules,
+    samples,
+    timeline,
+    validate,
+)
 from app.errors import ApiError
 from app.rules.loader import get_rules
 from app.settings import get_settings
 
 # Routers are added here as later steps implement them (all under /api).
-ROUTERS: list[APIRouter] = []
+ROUTERS: list[APIRouter] = [
+    health.router,
+    rules.router,
+    samples.router,
+    documents.router,
+    validate.router,
+    evaluate.router,
+    packet.router,
+    timeline.router,
+]
 
 
 @asynccontextmanager

@@ -4,5 +4,1775 @@
     "title": "Proofline API",
     "version": "1.0.0"
   },
-  "paths": {}
+  "paths": {
+    "/api/health": {
+      "get": {
+        "tags": [
+          "health"
+        ],
+        "summary": "Health",
+        "operationId": "health_api_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/rules": {
+      "get": {
+        "tags": [
+          "rules"
+        ],
+        "summary": "Get Rules",
+        "operationId": "get_rules_api_rules_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RulesResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/samples": {
+      "get": {
+        "tags": [
+          "samples"
+        ],
+        "summary": "Get Samples",
+        "operationId": "get_samples_api_samples_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SamplesResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/documents": {
+      "post": {
+        "tags": [
+          "documents"
+        ],
+        "summary": "Post Document",
+        "operationId": "post_document_api_documents_post",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_post_document_api_documents_post"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DocumentResult"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/validate": {
+      "post": {
+        "tags": [
+          "validate"
+        ],
+        "summary": "Validate",
+        "operationId": "validate_api_validate_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ValidateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidateResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/evaluate": {
+      "post": {
+        "tags": [
+          "evaluate"
+        ],
+        "summary": "Evaluate",
+        "operationId": "evaluate_api_evaluate_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EvaluateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EvaluateResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/packet": {
+      "post": {
+        "tags": [
+          "packet"
+        ],
+        "summary": "Packet",
+        "operationId": "packet_api_packet_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PacketRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "PDF file",
+            "content": {
+              "application/pdf": {}
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/timeline": {
+      "post": {
+        "tags": [
+          "timeline"
+        ],
+        "summary": "Timeline",
+        "operationId": "timeline_api_timeline_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TimelineRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "PDF file",
+            "content": {
+              "application/pdf": {}
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Body_post_document_api_documents_post": {
+        "properties": {
+          "file": {
+            "type": "string",
+            "contentMediaType": "application/octet-stream",
+            "title": "File"
+          },
+          "doc_id": {
+            "type": "string",
+            "title": "Doc Id"
+          },
+          "doc_type_hint": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "rfi_notice",
+                  "paystub",
+                  "employer_statement",
+                  "gig_earnings",
+                  "volunteer_letter",
+                  "school_letter",
+                  "unknown"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Doc Type Hint"
+          }
+        },
+        "type": "object",
+        "required": [
+          "file",
+          "doc_id"
+        ],
+        "title": "Body_post_document_api_documents_post"
+      },
+      "BoolField": {
+        "properties": {
+          "confidence": {
+            "type": "string",
+            "enum": [
+              "high",
+              "low"
+            ],
+            "title": "Confidence"
+          },
+          "page": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Page"
+          },
+          "confirmed": {
+            "type": "boolean",
+            "title": "Confirmed",
+            "default": false
+          },
+          "evidence": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Evidence"
+          },
+          "verification": {
+            "type": "string",
+            "enum": [
+              "grounded",
+              "ungrounded",
+              "not_checked"
+            ],
+            "title": "Verification",
+            "default": "not_checked"
+          },
+          "value": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Value"
+          }
+        },
+        "type": "object",
+        "required": [
+          "confidence",
+          "page",
+          "value"
+        ],
+        "title": "BoolField"
+      },
+      "CaseInfo": {
+        "properties": {
+          "clientName": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Clientname"
+          },
+          "caseType": {
+            "type": "string",
+            "enum": [
+              "renewal",
+              "new_application"
+            ],
+            "title": "Casetype"
+          },
+          "windowStart": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}$"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Windowstart"
+          },
+          "windowEnd": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}$"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Windowend"
+          },
+          "applicationMonth": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}$"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Applicationmonth"
+          },
+          "rfiReceivedDate": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Rfireceiveddate"
+          },
+          "lang": {
+            "type": "string",
+            "enum": [
+              "en",
+              "es"
+            ],
+            "title": "Lang",
+            "default": "en"
+          }
+        },
+        "type": "object",
+        "required": [
+          "clientName",
+          "caseType"
+        ],
+        "title": "CaseInfo"
+      },
+      "DateField": {
+        "properties": {
+          "confidence": {
+            "type": "string",
+            "enum": [
+              "high",
+              "low"
+            ],
+            "title": "Confidence"
+          },
+          "page": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Page"
+          },
+          "confirmed": {
+            "type": "boolean",
+            "title": "Confirmed",
+            "default": false
+          },
+          "evidence": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Evidence"
+          },
+          "verification": {
+            "type": "string",
+            "enum": [
+              "grounded",
+              "ungrounded",
+              "not_checked"
+            ],
+            "title": "Verification",
+            "default": "not_checked"
+          },
+          "value": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Value"
+          }
+        },
+        "type": "object",
+        "required": [
+          "confidence",
+          "page",
+          "value"
+        ],
+        "title": "DateField"
+      },
+      "Deadline": {
+        "properties": {
+          "date": {
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+            "title": "Date"
+          },
+          "ruleId": {
+            "type": "string",
+            "const": "rfi_response_days",
+            "title": "Ruleid"
+          },
+          "ruleStatus": {
+            "type": "string",
+            "enum": [
+              "confirmed",
+              "provisional",
+              "unresolved"
+            ],
+            "title": "Rulestatus"
+          }
+        },
+        "type": "object",
+        "required": [
+          "date",
+          "ruleId",
+          "ruleStatus"
+        ],
+        "title": "Deadline"
+      },
+      "DocumentResult": {
+        "properties": {
+          "docId": {
+            "type": "string",
+            "title": "Docid"
+          },
+          "fileName": {
+            "type": "string",
+            "title": "Filename"
+          },
+          "docType": {
+            "type": "string",
+            "enum": [
+              "rfi_notice",
+              "paystub",
+              "employer_statement",
+              "gig_earnings",
+              "volunteer_letter",
+              "school_letter",
+              "unknown"
+            ],
+            "title": "Doctype"
+          },
+          "classificationConfidence": {
+            "type": "string",
+            "enum": [
+              "high",
+              "low"
+            ],
+            "title": "Classificationconfidence"
+          },
+          "extractor": {
+            "type": "string",
+            "enum": [
+              "template",
+              "llm",
+              "none"
+            ],
+            "title": "Extractor"
+          },
+          "records": {
+            "items": {
+              "$ref": "#/components/schemas/EvidenceRecord"
+            },
+            "type": "array",
+            "title": "Records"
+          },
+          "notice": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/NoticeInfo"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "pipeline": {
+            "items": {
+              "$ref": "#/components/schemas/PipelineStage"
+            },
+            "type": "array",
+            "title": "Pipeline"
+          },
+          "warnings": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Warnings"
+          },
+          "demoMode": {
+            "type": "boolean",
+            "title": "Demomode"
+          },
+          "rulesVersion": {
+            "type": "string",
+            "title": "Rulesversion"
+          }
+        },
+        "type": "object",
+        "required": [
+          "docId",
+          "fileName",
+          "docType",
+          "classificationConfidence",
+          "extractor",
+          "records",
+          "pipeline",
+          "warnings",
+          "demoMode",
+          "rulesVersion"
+        ],
+        "title": "DocumentResult"
+      },
+      "EvaluateRequest": {
+        "properties": {
+          "caseInfo": {
+            "$ref": "#/components/schemas/CaseInfo"
+          },
+          "records": {
+            "items": {
+              "$ref": "#/components/schemas/EvidenceRecord"
+            },
+            "type": "array",
+            "title": "Records"
+          },
+          "exemptionAnswers": {
+            "items": {
+              "$ref": "#/components/schemas/ExemptionAnswer"
+            },
+            "type": "array",
+            "title": "Exemptionanswers"
+          }
+        },
+        "type": "object",
+        "required": [
+          "caseInfo",
+          "records"
+        ],
+        "title": "EvaluateRequest"
+      },
+      "EvaluateResponse": {
+        "properties": {
+          "months": {
+            "items": {
+              "$ref": "#/components/schemas/MonthResult"
+            },
+            "type": "array",
+            "title": "Months"
+          },
+          "bestMonth": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}$"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Bestmonth"
+          },
+          "deadline": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Deadline"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "possibleExemptions": {
+            "items": {
+              "$ref": "#/components/schemas/PossibleExemption"
+            },
+            "type": "array",
+            "title": "Possibleexemptions"
+          },
+          "gaps": {
+            "items": {
+              "$ref": "#/components/schemas/GapItem"
+            },
+            "type": "array",
+            "title": "Gaps"
+          },
+          "summary": {
+            "type": "string",
+            "title": "Summary"
+          },
+          "demoMode": {
+            "type": "boolean",
+            "title": "Demomode"
+          },
+          "rulesVersion": {
+            "type": "string",
+            "title": "Rulesversion"
+          }
+        },
+        "type": "object",
+        "required": [
+          "months",
+          "possibleExemptions",
+          "gaps",
+          "summary",
+          "demoMode",
+          "rulesVersion"
+        ],
+        "title": "EvaluateResponse"
+      },
+      "EvidenceRecord": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "docId": {
+            "type": "string",
+            "title": "Docid"
+          },
+          "docType": {
+            "type": "string",
+            "enum": [
+              "paystub",
+              "employer_statement",
+              "gig_earnings",
+              "volunteer_letter",
+              "school_letter"
+            ],
+            "title": "Doctype"
+          },
+          "activity": {
+            "type": "string",
+            "enum": [
+              "work",
+              "volunteer",
+              "job_training",
+              "school",
+              "income_only"
+            ],
+            "title": "Activity"
+          },
+          "personName": {
+            "$ref": "#/components/schemas/StrField"
+          },
+          "issuer": {
+            "$ref": "#/components/schemas/StrField"
+          },
+          "orgType": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/OrgTypeField"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "nonPartisan": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/BoolField"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "periodStart": {
+            "$ref": "#/components/schemas/DateField"
+          },
+          "periodEnd": {
+            "$ref": "#/components/schemas/DateField"
+          },
+          "hours": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/NumField"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "hourlyRateCents": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/NumField"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "grossCents": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/NumField"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "expensesCents": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/NumField"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "halfTimeEnrolled": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/BoolField"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "documentDate": {
+            "$ref": "#/components/schemas/DateField"
+          },
+          "flags": {
+            "items": {
+              "$ref": "#/components/schemas/Flag"
+            },
+            "type": "array",
+            "title": "Flags"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "docId",
+          "docType",
+          "activity",
+          "personName",
+          "issuer",
+          "periodStart",
+          "periodEnd",
+          "documentDate"
+        ],
+        "title": "EvidenceRecord"
+      },
+      "ExemptionAnswer": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "answer": {
+            "type": "boolean",
+            "title": "Answer"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "answer"
+        ],
+        "title": "ExemptionAnswer"
+      },
+      "Flag": {
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "ARITHMETIC_MISMATCH",
+              "DUPLICATE",
+              "STALE_DOCUMENT",
+              "VOLUNTEER_ORG_INELIGIBLE",
+              "NAME_MISMATCH",
+              "LOW_CONFIDENCE_UNCONFIRMED",
+              "UNGROUNDED_VALUE",
+              "DATE_OUT_OF_RANGE"
+            ],
+            "title": "Code"
+          },
+          "message": {
+            "type": "string",
+            "title": "Message"
+          },
+          "field": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Field"
+          },
+          "ruleId": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ruleid"
+          },
+          "ruleStatus": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "confirmed",
+                  "provisional",
+                  "unresolved"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Rulestatus"
+          }
+        },
+        "type": "object",
+        "required": [
+          "code",
+          "message"
+        ],
+        "title": "Flag"
+      },
+      "GapItem": {
+        "properties": {
+          "month": {
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}$",
+            "title": "Month"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "hours",
+              "income",
+              "unresolved_rule",
+              "unconfirmed_record"
+            ],
+            "title": "Kind"
+          },
+          "message": {
+            "type": "string",
+            "title": "Message"
+          },
+          "suggestedDocTypes": {
+            "items": {
+              "type": "string",
+              "enum": [
+                "rfi_notice",
+                "paystub",
+                "employer_statement",
+                "gig_earnings",
+                "volunteer_letter",
+                "school_letter",
+                "unknown"
+              ]
+            },
+            "type": "array",
+            "title": "Suggesteddoctypes"
+          },
+          "ruleId": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ruleid"
+          }
+        },
+        "type": "object",
+        "required": [
+          "month",
+          "kind",
+          "message",
+          "suggestedDocTypes"
+        ],
+        "title": "GapItem"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "HealthResponse": {
+        "properties": {
+          "ok": {
+            "type": "boolean",
+            "title": "Ok"
+          },
+          "demoMode": {
+            "type": "boolean",
+            "title": "Demomode"
+          },
+          "llmProvider": {
+            "type": "string",
+            "enum": [
+              "anthropic",
+              "bedrock",
+              "none"
+            ],
+            "title": "Llmprovider"
+          },
+          "rulesVersion": {
+            "type": "string",
+            "title": "Rulesversion"
+          }
+        },
+        "type": "object",
+        "required": [
+          "ok",
+          "demoMode",
+          "llmProvider",
+          "rulesVersion"
+        ],
+        "title": "HealthResponse"
+      },
+      "MonthResult": {
+        "properties": {
+          "month": {
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}$",
+            "title": "Month"
+          },
+          "workHours": {
+            "type": "number",
+            "title": "Workhours"
+          },
+          "volunteerHours": {
+            "type": "number",
+            "title": "Volunteerhours"
+          },
+          "trainingHours": {
+            "type": "number",
+            "title": "Traininghours"
+          },
+          "schoolHalfTime": {
+            "type": "boolean",
+            "title": "Schoolhalftime"
+          },
+          "grossIncomeCents": {
+            "type": "integer",
+            "title": "Grossincomecents"
+          },
+          "netIncomeCents": {
+            "type": "integer",
+            "title": "Netincomecents"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "meets",
+              "conditional",
+              "short"
+            ],
+            "title": "Status"
+          },
+          "pathsMet": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Pathsmet"
+          },
+          "dependsOnUnresolved": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Dependsonunresolved"
+          },
+          "hoursShortfall": {
+            "type": "number",
+            "title": "Hoursshortfall"
+          },
+          "incomeShortfallCents": {
+            "type": "integer",
+            "title": "Incomeshortfallcents"
+          },
+          "countedRecordIds": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Countedrecordids"
+          },
+          "excludedRecordIds": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Excludedrecordids"
+          }
+        },
+        "type": "object",
+        "required": [
+          "month",
+          "workHours",
+          "volunteerHours",
+          "trainingHours",
+          "schoolHalfTime",
+          "grossIncomeCents",
+          "netIncomeCents",
+          "status",
+          "pathsMet",
+          "dependsOnUnresolved",
+          "hoursShortfall",
+          "incomeShortfallCents",
+          "countedRecordIds",
+          "excludedRecordIds"
+        ],
+        "title": "MonthResult"
+      },
+      "NoticeInfo": {
+        "properties": {
+          "noticeDate": {
+            "$ref": "#/components/schemas/DateField"
+          },
+          "responseDeadline": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/DateField"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "requestSummary": {
+            "$ref": "#/components/schemas/StrField"
+          }
+        },
+        "type": "object",
+        "required": [
+          "noticeDate",
+          "requestSummary"
+        ],
+        "title": "NoticeInfo"
+      },
+      "NumField": {
+        "properties": {
+          "confidence": {
+            "type": "string",
+            "enum": [
+              "high",
+              "low"
+            ],
+            "title": "Confidence"
+          },
+          "page": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Page"
+          },
+          "confirmed": {
+            "type": "boolean",
+            "title": "Confirmed",
+            "default": false
+          },
+          "evidence": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Evidence"
+          },
+          "verification": {
+            "type": "string",
+            "enum": [
+              "grounded",
+              "ungrounded",
+              "not_checked"
+            ],
+            "title": "Verification",
+            "default": "not_checked"
+          },
+          "value": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Value"
+          }
+        },
+        "type": "object",
+        "required": [
+          "confidence",
+          "page",
+          "value"
+        ],
+        "title": "NumField"
+      },
+      "OrgTypeField": {
+        "properties": {
+          "confidence": {
+            "type": "string",
+            "enum": [
+              "high",
+              "low"
+            ],
+            "title": "Confidence"
+          },
+          "page": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Page"
+          },
+          "confirmed": {
+            "type": "boolean",
+            "title": "Confirmed",
+            "default": false
+          },
+          "evidence": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Evidence"
+          },
+          "verification": {
+            "type": "string",
+            "enum": [
+              "grounded",
+              "ungrounded",
+              "not_checked"
+            ],
+            "title": "Verification",
+            "default": "not_checked"
+          },
+          "value": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "public",
+                  "nonprofit",
+                  "for_profit",
+                  "political",
+                  "unknown"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Value"
+          }
+        },
+        "type": "object",
+        "required": [
+          "confidence",
+          "page",
+          "value"
+        ],
+        "title": "OrgTypeField"
+      },
+      "PacketRequest": {
+        "properties": {
+          "caseInfo": {
+            "$ref": "#/components/schemas/CaseInfo"
+          },
+          "records": {
+            "items": {
+              "$ref": "#/components/schemas/EvidenceRecord"
+            },
+            "type": "array",
+            "title": "Records"
+          },
+          "evaluation": {
+            "$ref": "#/components/schemas/EvaluateResponse"
+          }
+        },
+        "type": "object",
+        "required": [
+          "caseInfo",
+          "records",
+          "evaluation"
+        ],
+        "title": "PacketRequest"
+      },
+      "PipelineStage": {
+        "properties": {
+          "stage": {
+            "type": "string",
+            "enum": [
+              "ingest",
+              "render",
+              "classify",
+              "extract",
+              "normalize",
+              "verify"
+            ],
+            "title": "Stage"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "ok",
+              "warning",
+              "failed",
+              "skipped"
+            ],
+            "title": "Status"
+          },
+          "durationMs": {
+            "type": "integer",
+            "title": "Durationms"
+          },
+          "detail": {
+            "type": "string",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "required": [
+          "stage",
+          "status",
+          "durationMs",
+          "detail"
+        ],
+        "title": "PipelineStage"
+      },
+      "PossibleExemption": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "source": {
+            "type": "string",
+            "title": "Source"
+          },
+          "sourceUrl": {
+            "type": "string",
+            "title": "Sourceurl"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "label",
+          "source",
+          "sourceUrl"
+        ],
+        "title": "PossibleExemption"
+      },
+      "RulesResponse": {
+        "properties": {
+          "rulesVersion": {
+            "type": "string",
+            "title": "Rulesversion"
+          },
+          "thresholds": {
+            "$ref": "#/components/schemas/Thresholds"
+          },
+          "ruleStatuses": {
+            "additionalProperties": {
+              "type": "string",
+              "enum": [
+                "confirmed",
+                "provisional",
+                "unresolved"
+              ]
+            },
+            "type": "object",
+            "title": "Rulestatuses"
+          },
+          "unresolvedRules": {
+            "items": {
+              "$ref": "#/components/schemas/UnresolvedRule"
+            },
+            "type": "array",
+            "title": "Unresolvedrules"
+          },
+          "exemptionQuestions": {
+            "items": {
+              "$ref": "#/components/schemas/PossibleExemption"
+            },
+            "type": "array",
+            "title": "Exemptionquestions"
+          },
+          "sources": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Sources"
+          }
+        },
+        "type": "object",
+        "required": [
+          "rulesVersion",
+          "thresholds",
+          "ruleStatuses",
+          "unresolvedRules",
+          "exemptionQuestions",
+          "sources"
+        ],
+        "title": "RulesResponse"
+      },
+      "SampleFile": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "url": {
+            "type": "string",
+            "title": "Url"
+          },
+          "docType": {
+            "type": "string",
+            "enum": [
+              "rfi_notice",
+              "paystub",
+              "employer_statement",
+              "gig_earnings",
+              "volunteer_letter",
+              "school_letter",
+              "unknown"
+            ],
+            "title": "Doctype"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "url",
+          "docType"
+        ],
+        "title": "SampleFile"
+      },
+      "SamplesResponse": {
+        "properties": {
+          "files": {
+            "items": {
+              "$ref": "#/components/schemas/SampleFile"
+            },
+            "type": "array",
+            "title": "Files"
+          },
+          "caseInfo": {
+            "$ref": "#/components/schemas/CaseInfo"
+          },
+          "rulesVersion": {
+            "type": "string",
+            "title": "Rulesversion"
+          }
+        },
+        "type": "object",
+        "required": [
+          "files",
+          "caseInfo",
+          "rulesVersion"
+        ],
+        "title": "SamplesResponse"
+      },
+      "StrField": {
+        "properties": {
+          "confidence": {
+            "type": "string",
+            "enum": [
+              "high",
+              "low"
+            ],
+            "title": "Confidence"
+          },
+          "page": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Page"
+          },
+          "confirmed": {
+            "type": "boolean",
+            "title": "Confirmed",
+            "default": false
+          },
+          "evidence": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Evidence"
+          },
+          "verification": {
+            "type": "string",
+            "enum": [
+              "grounded",
+              "ungrounded",
+              "not_checked"
+            ],
+            "title": "Verification",
+            "default": "not_checked"
+          },
+          "value": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Value"
+          }
+        },
+        "type": "object",
+        "required": [
+          "confidence",
+          "page",
+          "value"
+        ],
+        "title": "StrField"
+      },
+      "SubmissionEntry": {
+        "properties": {
+          "submittedAt": {
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+            "title": "Submittedat"
+          },
+          "channel": {
+            "type": "string",
+            "enum": [
+              "online",
+              "mail",
+              "fax",
+              "in_person",
+              "phone"
+            ],
+            "title": "Channel"
+          },
+          "confirmationNumber": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Confirmationnumber"
+          },
+          "documentsIncluded": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Documentsincluded"
+          },
+          "notes": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Notes"
+          }
+        },
+        "type": "object",
+        "required": [
+          "submittedAt",
+          "channel",
+          "documentsIncluded"
+        ],
+        "title": "SubmissionEntry"
+      },
+      "Thresholds": {
+        "properties": {
+          "hours": {
+            "type": "number",
+            "title": "Hours"
+          },
+          "incomeCents": {
+            "type": "integer",
+            "title": "Incomecents"
+          },
+          "rfiResponseDays": {
+            "type": "integer",
+            "title": "Rfiresponsedays"
+          }
+        },
+        "type": "object",
+        "required": [
+          "hours",
+          "incomeCents",
+          "rfiResponseDays"
+        ],
+        "title": "Thresholds"
+      },
+      "TimelineRequest": {
+        "properties": {
+          "caseInfo": {
+            "$ref": "#/components/schemas/CaseInfo"
+          },
+          "submissions": {
+            "items": {
+              "$ref": "#/components/schemas/SubmissionEntry"
+            },
+            "type": "array",
+            "title": "Submissions"
+          }
+        },
+        "type": "object",
+        "required": [
+          "caseInfo",
+          "submissions"
+        ],
+        "title": "TimelineRequest"
+      },
+      "UnresolvedRule": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "description"
+        ],
+        "title": "UnresolvedRule"
+      },
+      "ValidateRequest": {
+        "properties": {
+          "caseInfo": {
+            "$ref": "#/components/schemas/CaseInfo"
+          },
+          "records": {
+            "items": {
+              "$ref": "#/components/schemas/EvidenceRecord"
+            },
+            "type": "array",
+            "title": "Records"
+          }
+        },
+        "type": "object",
+        "required": [
+          "caseInfo",
+          "records"
+        ],
+        "title": "ValidateRequest"
+      },
+      "ValidateResponse": {
+        "properties": {
+          "records": {
+            "items": {
+              "$ref": "#/components/schemas/EvidenceRecord"
+            },
+            "type": "array",
+            "title": "Records"
+          },
+          "rulesVersion": {
+            "type": "string",
+            "title": "Rulesversion"
+          }
+        },
+        "type": "object",
+        "required": [
+          "records",
+          "rulesVersion"
+        ],
+        "title": "ValidateResponse"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
 }
