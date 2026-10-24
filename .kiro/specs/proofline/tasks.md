@@ -8,7 +8,7 @@ Follow BUILD_PLAN.md. One task per Kiro session. Each task maps to the BUILD_PLA
 
 - [x] 1. [BE] B1 — backend skeleton, settings, Makefile
 - [x] 2. [BE] B2 — Pydantic schemas (API contract) + OpenAPI export
-- [ ] 3. [BE] B3 — rules loader and accessors + tests
+- [x] 3. [BE] B3 — rules loader and accessors + tests
 - [ ] 4. [BE] B4 — Jorge mocks, mock-backed API, contract tests, `make openapi` (push; frontend starts)
 - [ ] 5. [BE] B5 — ledger engine + property, scenario, boundary tests
 - [ ] 6. [BE] B6 — synthetic sample PDFs + ground truth

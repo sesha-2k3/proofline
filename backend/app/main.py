@@ -1,18 +1,29 @@
+from collections.abc import AsyncIterator
+from contextlib import asynccontextmanager
+
 from fastapi import APIRouter, FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 
 from app.errors import ApiError
+from app.rules.loader import get_rules
 from app.settings import get_settings
 
 # Routers are added here as later steps implement them (all under /api).
 ROUTERS: list[APIRouter] = []
 
 
+@asynccontextmanager
+async def lifespan(_: FastAPI) -> AsyncIterator[None]:
+    # Load and validate rules once; RulesError (naming the rule id) stops startup.
+    get_rules()
+    yield
+
+
 def create_app() -> FastAPI:
     settings = get_settings()
-    app = FastAPI(title="Proofline API", version="1.0.0")
+    app = FastAPI(title="Proofline API", version="1.0.0", lifespan=lifespan)
 
     app.add_middleware(
         CORSMiddleware,
