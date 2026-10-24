@@ -24,6 +24,54 @@
         "chatSessionId": "sess_d679219d-936a-4f26-8f75-e8777cb28138",
         "timestamp": 1792877152113
       }
+    ],
+    "5. [BE] B5 — ledger engine + property, scenario, boundary tests": [
+      {
+        "executionId": "92d84379-391b-4f5c-baf1-f7374128be62",
+        "chatSessionId": "sess_273f8929-0207-488e-8416-0aa71ccae256",
+        "timestamp": 1792877353305
+      },
+      {
+        "executionId": "92d84379-391b-4f5c-baf1-f7374128be62",
+        "chatSessionId": "sess_273f8929-0207-488e-8416-0aa71ccae256",
+        "timestamp": 1792877644125
+      }
+    ],
+    "6. [BE] B6 — synthetic sample PDFs + ground truth": [
+      {
+        "executionId": "6700c8f8-ccc2-4486-a0ab-d5135905a95c",
+        "chatSessionId": "sess_5c6e5455-2b2f-478e-bfb8-905cb32f9329",
+        "timestamp": 1792877688700
+      },
+      {
+        "executionId": "6700c8f8-ccc2-4486-a0ab-d5135905a95c",
+        "chatSessionId": "sess_5c6e5455-2b2f-478e-bfb8-905cb32f9329",
+        "timestamp": 1792877793495
+      }
+    ],
+    "7. [BE] B7 — pipeline: ingest, render, classify": [
+      {
+        "executionId": "526d227f-e4ac-49fd-b170-650170852966",
+        "chatSessionId": "sess_35872edb-31c5-4958-a38c-5a233e4bcb15",
+        "timestamp": 1792877817151
+      },
+      {
+        "executionId": "526d227f-e4ac-49fd-b170-650170852966",
+        "chatSessionId": "sess_35872edb-31c5-4958-a38c-5a233e4bcb15",
+        "timestamp": 1792877942035
+      }
+    ],
+    "8. [BE] B8 — pipeline: template and LLM extraction": [
+      {
+        "executionId": "52c1852b-5086-43a4-a0f7-a2fea1ad53f0",
+        "chatSessionId": "sess_70bcb00c-7094-4f41-ad9c-eb0517702090",
+        "timestamp": 1792877962100
+      },
+      {
+        "executionId": "52c1852b-5086-43a4-a0f7-a2fea1ad53f0",
+        "chatSessionId": "sess_70bcb00c-7094-4f41-ad9c-eb0517702090",
+        "timestamp": 1792878210255
+      }
     ]
   }
 }

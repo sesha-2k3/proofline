@@ -1,0 +1,581 @@
+{
+  "files": {
+    "rfi_notice.pdf": {
+      "docType": "rfi_notice",
+      "records": [],
+      "notice": {
+        "noticeDate": {
+          "confidence": "high",
+          "page": 1,
+          "confirmed": false,
+          "evidence": "Notice date: 06/10/2027",
+          "verification": "grounded",
+          "value": "2027-06-10"
+        },
+        "responseDeadline": {
+          "confidence": "high",
+          "page": 1,
+          "confirmed": false,
+          "evidence": "Respond by: 07/12/2027",
+          "verification": "grounded",
+          "value": "2027-07-12"
+        },
+        "requestSummary": {
+          "confidence": "high",
+          "page": 1,
+          "confirmed": false,
+          "evidence": "Request: MassHealth is asking for proof that you met the work and education requirements for one month between February and June 2027.",
+          "verification": "grounded",
+          "value": "MassHealth is asking for proof that you met the work and education requirements for one month between February and June 2027."
+        }
+      }
+    },
+    "quickdash_2027-04.pdf": {
+      "docType": "gig_earnings",
+      "records": [
+        {
+          "id": "rec-gig_earnings-quickdash-2027-04-01",
+          "docId": "quickdash_2027-04.pdf",
+          "docType": "gig_earnings",
+          "activity": "work",
+          "personName": {
+            "confidence": "high",
+            "page": 1,
+            "confirmed": false,
+            "evidence": "Driver: Jorge Ramos",
+            "verification": "grounded",
+            "value": "Jorge Ramos"
+          },
+          "issuer": {
+            "confidence": "high",
+            "page": 1,
+            "confirmed": false,
+            "evidence": "QuickDash Driver Earnings Summary",
+            "verification": "grounded",
+            "value": "QuickDash"
+          },
+          "orgType": null,
+          "nonPartisan": null,
+          "periodStart": {
+            "confidence": "high",
+            "page": 1,
+            "confirmed": false,
+            "evidence": "Period: 04/01/2027 - 04/30/2027",
+            "verification": "grounded",
+            "value": "2027-04-01"
+          },
+          "periodEnd": {
+            "confidence": "high",
+            "page": 1,
+            "confirmed": false,
+            "evidence": "Period: 04/01/2027 - 04/30/2027",
+            "verification": "grounded",
+            "value": "2027-04-30"
+          },
+          "hours": {
+            "confidence": "high",
+            "page": 1,
+            "confirmed": false,
+            "evidence": "Active hours: 14.00",
+            "verification": "grounded",
+            "value": 14.0
+          },
+          "hourlyRateCents": null,
+          "grossCents": {
+            "confidence": "high",
+            "page": 1,
+            "confirmed": false,
+            "evidence": "Gross earnings: $320.00",
+            "verification": "grounded",
+            "value": 32000.0
+          },
+          "expensesCents": {
+            "confidence": "high",
+            "page": 1,
+            "confirmed": false,
+            "evidence": "Expenses (mileage): $110.00",
+            "verification": "grounded",
+            "value": 11000.0
+          },
+          "halfTimeEnrolled": null,
+          "documentDate": {
+            "confidence": "high",
+            "page": 1,
+            "confirmed": false,
+            "evidence": "Statement date: 05/01/2027",
+            "verification": "grounded",
+            "value": "2027-05-01"
+          },
+          "flags": []
+        }
+      ],
+      "notice": null
+    },
+    "quickdash_2027-05.pdf": {
+      "docType": "gig_earnings",
+      "records": [
+        {
+          "id": "rec-gig_earnings-quickdash-2027-05-01",
+          "docId": "quickdash_2027-05.pdf",
+          "docType": "gig_earnings",
+          "activity": "work",
+          "personName": {
+            "confidence": "high",
+            "page": 1,
+            "confirmed": false,
+            "evidence": "Driver: Jorge Ramos",
+            "verification": "grounded",
+            "value": "Jorge Ramos"
+          },
+          "issuer": {
+            "confidence": "high",
+            "page": 1,
+            "confirmed": false,
+            "evidence": "QuickDash Driver Earnings Summary",
+            "verification": "grounded",
+            "value": "QuickDash"
+          },
+          "orgType": null,
+          "nonPartisan": null,
+          "periodStart": {
+            "confidence": "high",
+            "page": 1,
+            "confirmed": false,
+            "evidence": "Period: 05/01/2027 - 05/31/2027",
+            "verification": "grounded",
+            "value": "2027-05-01"
+          },
+          "periodEnd": {
+            "confidence": "high",
+            "page": 1,
+            "confirmed": false,
+            "evidence": "Period: 05/01/2027 - 05/31/2027",
+            "verification": "grounded",
+            "value": "2027-05-31"
+          },
+          "hours": {
+            "confidence": "high",
+            "page": 1,
+            "confirmed": false,
+            "evidence": "Active hours: 31.50",
+            "verification": "grounded",
+            "value": 31.5
+          },
+          "hourlyRateCents": null,
+          "grossCents": {
+            "confidence": "high",
+            "page": 1,
+            "confirmed": false,
+            "evidence": "Gross earnings: $560.00",
+            "verification": "grounded",
+            "value": 56000.0
+          },
+          "expensesCents": {
+            "confidence": "high",
+            "page": 1,
+            "confirmed": false,
+            "evidence": "Expenses (mileage): $210.00",
+            "verification": "grounded",
+            "value": 21000.0
+          },
+          "halfTimeEnrolled": null,
+          "documentDate": {
+            "confidence": "high",
+            "page": 1,
+            "confirmed": false,
+            "evidence": "Statement date: 06/01/2027",
+            "verification": "grounded",
+            "value": "2027-06-01"
+          },
+          "flags": []
+        }
+      ],
+      "notice": null
+    },
+    "bakery_statement_2027-04.pdf": {
+      "docType": "employer_statement",
+      "records": [
+        {
+          "id": "rec-employer_statement-ramos-family-bakery-2027-04-01",
+          "docId": "bakery_statement_2027-04.pdf",
+          "docType": "employer_statement",
+          "activity": "work",
+          "personName": {
+            "confidence": "high",
+            "page": 1,
+            "confirmed": false,
+            "evidence": "Worker: Jorge Ramos",
+            "verification": "grounded",
+            "value": "Jorge Ramos"
+          },
+          "issuer": {
+            "confidence": "high",
+            "page": 1,
+            "confirmed": false,
+            "evidence": "Employer: Ramos Family Bakery",
+            "verification": "grounded",
+            "value": "Ramos Family Bakery"
+          },
+          "orgType": null,
+          "nonPartisan": null,
+          "periodStart": {
+            "confidence": "high",
+            "page": 1,
+            "confirmed": false,
+            "evidence": "Period: 04/01/2027 - 04/30/2027",
+            "verification": "grounded",
+            "value": "2027-04-01"
+          },
+          "periodEnd": {
+            "confidence": "high",
+            "page": 1,
+            "confirmed": false,
+            "evidence": "Period: 04/01/2027 - 04/30/2027",
+            "verification": "grounded",
+            "value": "2027-04-30"
+          },
+          "hours": {
+            "confidence": "high",
+            "page": 1,
+            "confirmed": false,
+            "evidence": "Hours worked: 20.00",
+            "verification": "grounded",
+            "value": 20.0
+          },
+          "hourlyRateCents": null,
+          "grossCents": {
+            "confidence": "high",
+            "page": 1,
+            "confirmed": false,
+            "evidence": "Pay: Unpaid ($0.00)",
+            "verification": "grounded",
+            "value": 0.0
+          },
+          "expensesCents": null,
+          "halfTimeEnrolled": null,
+          "documentDate": {
+            "confidence": "high",
+            "page": 1,
+            "confirmed": false,
+            "evidence": "Date: 05/02/2027",
+            "verification": "grounded",
+            "value": "2027-05-02"
+          },
+          "flags": []
+        }
+      ],
+      "notice": null
+    },
+    "bakery_statement_2027-05.pdf": {
+      "docType": "employer_statement",
+      "records": [
+        {
+          "id": "rec-employer_statement-ramos-family-bakery-2027-05-01",
+          "docId": "bakery_statement_2027-05.pdf",
+          "docType": "employer_statement",
+          "activity": "work",
+          "personName": {
+            "confidence": "high",
+            "page": 1,
+            "confirmed": false,
+            "evidence": "Worker: Jorge Ramos",
+            "verification": "grounded",
+            "value": "Jorge Ramos"
+          },
+          "issuer": {
+            "confidence": "high",
+            "page": 1,
+            "confirmed": false,
+            "evidence": "Employer: Ramos Family Bakery",
+            "verification": "grounded",
+            "value": "Ramos Family Bakery"
+          },
+          "orgType": null,
+          "nonPartisan": null,
+          "periodStart": {
+            "confidence": "high",
+            "page": 1,
+            "confirmed": false,
+            "evidence": "Period: 05/01/2027 - 05/31/2027",
+            "verification": "grounded",
+            "value": "2027-05-01"
+          },
+          "periodEnd": {
+            "confidence": "high",
+            "page": 1,
+            "confirmed": false,
+            "evidence": "Period: 05/01/2027 - 05/31/2027",
+            "verification": "grounded",
+            "value": "2027-05-31"
+          },
+          "hours": {
+            "confidence": "high",
+            "page": 1,
+            "confirmed": false,
+            "evidence": "Hours worked: 26.00",
+            "verification": "grounded",
+            "value": 26.0
+          },
+          "hourlyRateCents": null,
+          "grossCents": {
+            "confidence": "high",
+            "page": 1,
+            "confirmed": false,
+            "evidence": "Pay: Unpaid ($0.00)",
+            "verification": "grounded",
+            "value": 0.0
+          },
+          "expensesCents": null,
+          "halfTimeEnrolled": null,
+          "documentDate": {
+            "confidence": "high",
+            "page": 1,
+            "confirmed": false,
+            "evidence": "Date: 06/02/2027",
+            "verification": "grounded",
+            "value": "2027-06-02"
+          },
+          "flags": []
+        }
+      ],
+      "notice": null
+    },
+    "pantry_letter.pdf": {
+      "docType": "volunteer_letter",
+      "records": [
+        {
+          "id": "rec-volunteer_letter-eastside-community-food-pantry-2027-04-01",
+          "docId": "pantry_letter.pdf",
+          "docType": "volunteer_letter",
+          "activity": "volunteer",
+          "personName": {
+            "confidence": "high",
+            "page": 1,
+            "confirmed": false,
+            "evidence": "Volunteer: Jorge Ramos",
+            "verification": "grounded",
+            "value": "Jorge Ramos"
+          },
+          "issuer": {
+            "confidence": "high",
+            "page": 1,
+            "confirmed": false,
+            "evidence": "Organization: Eastside Community Food Pantry",
+            "verification": "grounded",
+            "value": "Eastside Community Food Pantry"
+          },
+          "orgType": {
+            "confidence": "high",
+            "page": 1,
+            "confirmed": false,
+            "evidence": "Organization type: 501(c)(3) nonprofit, non-partisan",
+            "verification": "grounded",
+            "value": "nonprofit"
+          },
+          "nonPartisan": {
+            "confidence": "high",
+            "page": 1,
+            "confirmed": false,
+            "evidence": "Organization type: 501(c)(3) nonprofit, non-partisan",
+            "verification": "grounded",
+            "value": true
+          },
+          "periodStart": {
+            "confidence": "high",
+            "page": 1,
+            "confirmed": false,
+            "evidence": "April 2027 hours: 10.00",
+            "verification": "grounded",
+            "value": "2027-04-01"
+          },
+          "periodEnd": {
+            "confidence": "high",
+            "page": 1,
+            "confirmed": false,
+            "evidence": "April 2027 hours: 10.00",
+            "verification": "grounded",
+            "value": "2027-04-30"
+          },
+          "hours": {
+            "confidence": "high",
+            "page": 1,
+            "confirmed": false,
+            "evidence": "April 2027 hours: 10.00",
+            "verification": "grounded",
+            "value": 10.0
+          },
+          "hourlyRateCents": null,
+          "grossCents": null,
+          "expensesCents": null,
+          "halfTimeEnrolled": null,
+          "documentDate": {
+            "confidence": "high",
+            "page": 1,
+            "confirmed": false,
+            "evidence": "Date: 06/05/2027",
+            "verification": "grounded",
+            "value": "2027-06-05"
+          },
+          "flags": []
+        },
+        {
+          "id": "rec-volunteer_letter-eastside-community-food-pantry-2027-05-01",
+          "docId": "pantry_letter.pdf",
+          "docType": "volunteer_letter",
+          "activity": "volunteer",
+          "personName": {
+            "confidence": "high",
+            "page": 1,
+            "confirmed": false,
+            "evidence": "Volunteer: Jorge Ramos",
+            "verification": "grounded",
+            "value": "Jorge Ramos"
+          },
+          "issuer": {
+            "confidence": "high",
+            "page": 1,
+            "confirmed": false,
+            "evidence": "Organization: Eastside Community Food Pantry",
+            "verification": "grounded",
+            "value": "Eastside Community Food Pantry"
+          },
+          "orgType": {
+            "confidence": "high",
+            "page": 1,
+            "confirmed": false,
+            "evidence": "Organization type: 501(c)(3) nonprofit, non-partisan",
+            "verification": "grounded",
+            "value": "nonprofit"
+          },
+          "nonPartisan": {
+            "confidence": "high",
+            "page": 1,
+            "confirmed": false,
+            "evidence": "Organization type: 501(c)(3) nonprofit, non-partisan",
+            "verification": "grounded",
+            "value": true
+          },
+          "periodStart": {
+            "confidence": "high",
+            "page": 1,
+            "confirmed": false,
+            "evidence": "May 2027 hours: 24.00 [handwritten, partially illegible]",
+            "verification": "grounded",
+            "value": "2027-05-01"
+          },
+          "periodEnd": {
+            "confidence": "high",
+            "page": 1,
+            "confirmed": false,
+            "evidence": "May 2027 hours: 24.00 [handwritten, partially illegible]",
+            "verification": "grounded",
+            "value": "2027-05-31"
+          },
+          "hours": {
+            "confidence": "low",
+            "page": 1,
+            "confirmed": false,
+            "evidence": "May 2027 hours: 24.00 [handwritten, partially illegible]",
+            "verification": "grounded",
+            "value": 24.0
+          },
+          "hourlyRateCents": null,
+          "grossCents": null,
+          "expensesCents": null,
+          "halfTimeEnrolled": null,
+          "documentDate": {
+            "confidence": "high",
+            "page": 1,
+            "confirmed": false,
+            "evidence": "Date: 06/05/2027",
+            "verification": "grounded",
+            "value": "2027-06-05"
+          },
+          "flags": []
+        }
+      ],
+      "notice": null
+    },
+    "harbor_cafe_paystub.pdf": {
+      "docType": "paystub",
+      "records": [
+        {
+          "id": "rec-paystub-harbor-cafe-2027-05-24",
+          "docId": "harbor_cafe_paystub.pdf",
+          "docType": "paystub",
+          "activity": "work",
+          "personName": {
+            "confidence": "high",
+            "page": 1,
+            "confirmed": false,
+            "evidence": "Employee: Jorge Ramos",
+            "verification": "grounded",
+            "value": "Jorge Ramos"
+          },
+          "issuer": {
+            "confidence": "high",
+            "page": 1,
+            "confirmed": false,
+            "evidence": "Harbor Cafe Pay Stub",
+            "verification": "grounded",
+            "value": "Harbor Cafe"
+          },
+          "orgType": null,
+          "nonPartisan": null,
+          "periodStart": {
+            "confidence": "high",
+            "page": 1,
+            "confirmed": false,
+            "evidence": "Pay period: 05/24/2027 - 06/06/2027",
+            "verification": "grounded",
+            "value": "2027-05-24"
+          },
+          "periodEnd": {
+            "confidence": "high",
+            "page": 1,
+            "confirmed": false,
+            "evidence": "Pay period: 05/24/2027 - 06/06/2027",
+            "verification": "grounded",
+            "value": "2027-06-06"
+          },
+          "hours": {
+            "confidence": "high",
+            "page": 1,
+            "confirmed": false,
+            "evidence": "Hours: 20.00",
+            "verification": "grounded",
+            "value": 20.0
+          },
+          "hourlyRateCents": {
+            "confidence": "high",
+            "page": 1,
+            "confirmed": false,
+            "evidence": "Rate: $15.50",
+            "verification": "grounded",
+            "value": 1550.0
+          },
+          "grossCents": {
+            "confidence": "high",
+            "page": 1,
+            "confirmed": false,
+            "evidence": "Gross pay: $310.00",
+            "verification": "grounded",
+            "value": 31000.0
+          },
+          "expensesCents": null,
+          "halfTimeEnrolled": null,
+          "documentDate": {
+            "confidence": "high",
+            "page": 1,
+            "confirmed": false,
+            "evidence": "Pay date: 06/07/2027",
+            "verification": "grounded",
+            "value": "2027-06-07"
+          },
+          "flags": []
+        }
+      ],
+      "notice": null
+    }
+  }
+}

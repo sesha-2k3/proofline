@@ -10,10 +10,10 @@ Follow BUILD_PLAN.md. One task per Kiro session. Each task maps to the BUILD_PLA
 - [x] 2. [BE] B2 — Pydantic schemas (API contract) + OpenAPI export
 - [x] 3. [BE] B3 — rules loader and accessors + tests
 - [x] 4. [BE] B4 — Jorge mocks, mock-backed API, contract tests, `make openapi` (push; frontend starts)
-- [ ] 5. [BE] B5 — ledger engine + property, scenario, boundary tests
-- [ ] 6. [BE] B6 — synthetic sample PDFs + ground truth
-- [ ] 7. [BE] B7 — pipeline: ingest, render, classify
-- [ ] 8. [BE] B8 — pipeline: template and LLM extraction
+- [x] 5. [BE] B5 — ledger engine + property, scenario, boundary tests
+- [x] 6. [BE] B6 — synthetic sample PDFs + ground truth
+- [x] 7. [BE] B7 — pipeline: ingest, render, classify
+- [x] 8. [BE] B8 — pipeline: template and LLM extraction
 - [ ] 9. [BE] B9 — pipeline: normalize, verify, orchestrator, real POST /documents
 - [ ] 10. [BE] B10 — validation, evaluate, gaps, exemptions, deadline, summary
 - [ ] 11. [BE] B11 — packet and submission record PDFs
