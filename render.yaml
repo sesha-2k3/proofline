@@ -1,0 +1,11 @@
+# Render Blueprint: Proofline as one Docker web service in demo mode.
+# No LLM env vars are set, so the app runs offline (template extraction only).
+services:
+  - type: web
+    name: proofline
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /api/health
+    autoDeploy: false
