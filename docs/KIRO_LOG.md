@@ -1,17 +1,11 @@
-# Kiro log
+# Kiro log (source for the "How we used Kiro" write-up)
+Add one line whenever a Kiro feature shaped or caught something.
 
-Raw notes for the Kiro write-up (KIRO_SETUP.md, section 7). Add one line per notable event.
-
-## Tools
-
-## Spec-driven development
-
+## Tools used
+## Specs
 ## Steering
-
 ## Hooks
-
 ## MCP
-
 ## Property-based testing
-
+## Evaluation
 ## Powers

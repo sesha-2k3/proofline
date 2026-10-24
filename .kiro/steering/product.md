@@ -3,31 +3,27 @@ inclusion: always
 ---
 # Product: Proofline
 
-Proofline helps Massachusetts benefits navigators (staff at community health centers, nonprofits, legal aid) keep eligible MassHealth members covered under the federal Medicaid work and education requirements that begin January 1, 2027.
+Proofline helps Massachusetts benefits navigators keep eligible MassHealth members covered under the federal Medicaid work and education requirements that begin January 1, 2027. A navigator uploads a client's notice and scattered evidence; Proofline processes the documents, verifies what it read, and proves the strongest single qualifying month, producing a PDF packet and a submission record.
 
-## The user and the moment
-- Primary user: a trained navigator working with a client who received a MassHealth renewal or Request for Information (RFI) because MassHealth could not verify them automatically ("blue envelope" cases).
-- The client has messy, multi-source evidence: gig earnings, part-time or cash jobs, unpaid work, volunteer hours, school enrollment.
-- The client usually has about 30 days to respond (provisional; see rules file).
+## Users
+- Primary: navigators at community health centers, nonprofits, and legal aid (trained helpers).
+- Their clients: people MassHealth could not verify automatically ("blue envelope" cases) with messy evidence: gig earnings, unpaid family-business work, volunteer shifts, cash jobs, pay periods that cross months.
 
-## Core flow (MVP)
-1. Navigator uploads the notice and the client's documents, and answers a short exemption questionnaire.
-2. The app classifies and extracts each document into structured evidence records.
-3. Code validates the records; low-confidence fields are flagged.
-4. The navigator confirms or corrects flagged fields.
-5. The ledger engine evaluates each month in the renewal window and picks the strongest month.
-6. The app shows a gap report and generates a PDF packet, plus a submission record.
+## Massachusetts rule that shapes the product
+Members must meet the requirement for ONE month between their last renewal and their next renewal; new applicants must meet it in the month before they apply. Proofline finds and proves the strongest single month.
 
-## Key Massachusetts rule
-MassHealth requires members to meet the requirement for ONE month between their last renewal and their next renewal; new applicants must meet it in the month before they apply. The product's job is to find and prove the strongest single month, not every month.
+## Principles
+- AI reads; code decides. The LLM classifies and extracts; deterministic code verifies and evaluates.
+- Honest about uncertainty: outcomes that depend on unresolved rules are "conditional" and name the rule.
+- Exempt people also need proof each renewal; exemption flags cite their source.
+- Protect against lost paperwork with a submission record and timeline.
 
 ## Never do
-- Never decide eligibility. Say what the evidence appears to show; MassHealth decides.
-- Never give legal advice. Suggest questions for the navigator, not instructions to the client.
-- Never store documents or personal data. Process in memory for the session only.
-- Never use real personal data in code, fixtures, tests, or demos. Synthetic data only.
-- Never use third-party trademarks in sample documents (use invented names like "QuickDash").
-- Never take political positions in UI copy. Neutral, plain language.
+- Never decide eligibility ("the evidence appears to show"; MassHealth decides).
+- Never give legal advice. Never submit anything for the client.
+- Never store documents or personal data beyond the request. No database.
+- Never use real personal data or real brands in samples, tests, or fixtures (use "QuickDash", "Harbor Cafe", "Ramos Family Bakery", "Eastside Community Food Pantry").
+- Never use political language in UI copy.
 
 ## Demo persona
-Jorge Ramos (synthetic): gig delivery driver for "QuickDash", helps unpaid at his family's bakery, volunteers at "Eastside Community Food Pantry" (a 501(c)(3) nonprofit). He received an RFI and needs to prove one qualifying month.
+Jorge Ramos (synthetic): QuickDash gig driver, unpaid help at Ramos Family Bakery, volunteer at Eastside Community Food Pantry, part-time shifts at Harbor Cafe. Received a Request for Information.
