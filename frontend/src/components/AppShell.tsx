@@ -1,4 +1,6 @@
+import { useEffect } from 'react'
 import { Link, Outlet, useLocation } from 'react-router-dom'
+import { getHealth } from '../api/client'
 import type { MessageKey } from '../i18n/en'
 import { useT } from '../i18n/useT'
 import { useCaseState, type Step, type UiLang } from '../state/caseState'
@@ -20,28 +22,45 @@ export function AppShell() {
   const { state, dispatch } = useCaseState()
   const t = useT()
   const onCasePage = useLocation().pathname.startsWith('/case')
+  const lang = state.caseInfo.lang
+
+  // Health check once on load: shows the Demo mode badge, or a warning if the server is unreachable.
+  useEffect(() => {
+    let cancelled = false
+    getHealth()
+      .then((health) => !cancelled && dispatch({ type: 'SET_HEALTH', health }))
+      .catch(() => !cancelled && dispatch({ type: 'SET_HEALTH', health: null, error: true }))
+    return () => {
+      cancelled = true
+    }
+  }, [dispatch])
 
   return (
-    <div lang={state.lang} className="min-h-screen">
+    <div lang={lang} className="min-h-screen">
       <header className="border-b border-line bg-surface">
         <div className="mx-auto flex max-w-5xl flex-wrap items-center gap-3 px-4 py-3">
           <Link to="/" className="text-xl font-bold text-brand-strong no-underline">
             {t('appName')}
           </Link>
-          {state.demoMode && (
+          {state.health?.demoMode && (
             <span className="rounded-full border border-conditional bg-conditional-soft px-2 py-0.5 text-sm font-medium text-conditional">
               {t('demoMode')}
             </span>
           )}
+          {state.healthError && (
+            <span role="status" className="rounded-full border border-short bg-short-soft px-2 py-0.5 text-sm font-medium text-short">
+              {t('serverOffline')}
+            </span>
+          )}
           <div role="group" aria-label={t('languageLabel')} className="ml-auto flex overflow-hidden rounded-md border border-line">
-            {LANGS.map(({ lang, label }) => (
+            {LANGS.map(({ lang: option, label }) => (
               <button
-                key={lang}
+                key={option}
                 type="button"
-                aria-pressed={state.lang === lang}
-                onClick={() => dispatch({ type: 'SET_LANG', lang })}
+                aria-pressed={option === lang}
+                onClick={() => dispatch({ type: 'SET_LANG', lang: option })}
                 className={
-                  state.lang === lang
+                  option === lang
                     ? 'bg-brand px-3 py-1 text-sm font-semibold text-white'
                     : 'bg-surface px-3 py-1 text-sm font-semibold text-ink hover:bg-brand-soft'
                 }

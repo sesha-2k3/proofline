@@ -4,8 +4,11 @@ import { useCaseState } from '../state/caseState'
 
 export function LandingPage() {
   const t = useT()
-  const { dispatch } = useCaseState()
-  const reset = () => dispatch({ type: 'RESET' })
+  const { state, dispatch } = useCaseState()
+  const reset = () => {
+    state.documents.forEach((d) => URL.revokeObjectURL(d.objectUrl))
+    dispatch({ type: 'RESET' })
+  }
 
   return (
     <section className="max-w-2xl">
